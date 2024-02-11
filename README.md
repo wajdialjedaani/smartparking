@@ -34,3 +34,58 @@ User-specific views for bicycles, cars, and physically abled persons.
 Reservation system for specific parking slots.
 Intuitive and user-friendly interface.
 Notifications for users about reservations and slot availability.
+
+
+
+![Use case diagram (6)](https://github.com/shivamjadhav2000/smartparking/assets/52875456/609a0506-e442-4fc3-8ee7-e52a74347484)
+
+
+Brief Problem Statement
+ SmartParking, A modern parking management system that provides information about
+ available parking slots, capacity, and specialized slots for different users. This system
+ helps to improve the parking experience, making it efficient and accessible for various
+ users. Smart parking allows users to view parking availability and trends, enabling them
+ to make informed decisions based on past data.
+ This application includes many features to streamline the parking process, including:
+ 1. The ability to search for parking slots based on the address.
+ 2. The option to create a parking slot with relevant information.
+ 3. The ability to segregate different parking slot information.
+ 4. Managing the entry of parking information.
+ 5. Providing information on available parking slots.
+ 6. Information to understand trends in parking slot occupation.
+ 7. The option to log in to the custom dashboard and use admin features, such as
+ updating parking slot information.
+ 8. The option to integrate dynamic updates for parking slots based on an API, which can
+ be integrated with any IoT device or computer vision.
+ 9. The ability to download reports with daily statistics for parking slot trends.
+ This project allows for easy management of parking slots in busy areas such as
+ universities or organizations. An administrator user can manage the parking information
+ that is displayed to the end user. They can do this by updating the information using the
+ "Update Parking Slot Info" feature for a specific parking station. This provides real-time
+ information about available parking slots for that particular parking station.
+
+FunctionalRequirements:
+ S.No Name Description 
+ 1 RegisteringUser 
+ ● Users can register with smart parking to access the
+ dashboard.
+ ● For registration,user need tofill
+ aformthatincludesemail
+ address, first name, last name, role and password.
+ 
+ 2 Login 
+ ● Users can log in with credentials
+ to access a custom dashboard.
+ ● Admin user save additional privileges to update parking lot information through the
+ dashboard.
+ 
+ 3 ManageParking
+ Station
+ ● Admincancreate,update and delete parking stations by providing relevant information
+ 
+ 4 Smart parking such as location, capacity, and any specialized slots.
+ 5 ManageParking Options
+ ● Parkingslotsarecategorized and displayed based on different criteria such as location, capacity, and user groups.
+ 6 ManageParkingData 
+ ● Admin can manage the entry of parking information, including adding, updating,or removing parking lot details.
+ 
