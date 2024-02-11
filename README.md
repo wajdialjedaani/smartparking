@@ -63,3 +63,29 @@ Brief Problem Statement
  that is displayed to the end user. They can do this by updating the information using the
  "Update Parking Slot Info" feature for a specific parking station. This provides real-time
  information about available parking slots for that particular parking station.
+
+FunctionalRequirements:
+ S.No Name Description 
+ 1 RegisteringUser 
+ ● Users can register with smart parking to access the
+ dashboard.
+ ● For registration,user need tofill
+ aformthatincludesemail
+ address, first name, last name, role and password.
+ 
+ 2 Login 
+ ● Users can log in with credentials
+ to access a custom dashboard.
+ ● Admin user save additional privileges to update parking lot information through the
+ dashboard.
+ 
+ 3 ManageParking
+ Station
+ ● Admincancreate,update and delete parking stations by providing relevant information
+ 
+ 4 Smart parking such as location, capacity, and any specialized slots.
+ 5 ManageParking Options
+ ● Parkingslotsarecategorized and displayed based on different criteria such as location, capacity, and user groups.
+ 6 ManageParkingData 
+ ● Admin can manage the entry of parking information, including adding, updating,or removing parking lot details.
+ 
