@@ -1,21 +1,37 @@
-
+import { useState } from "react";
 function Navbar() {
+  const [admin, setadmin] = useState(false);
+  function disBtns() {
+    setadmin((preval) => {
+      return !preval;
+    });
+  }
+
   return (
-    <div className="bg-violet-600 p-6 ">
-      <div className="container mx-auto flex items-center  justify-between">
-        <div className="text-white font-semibold text-xl">Smart Parking</div>
-        <div className="space-x-20 flex justify-between end w-1/2 ">
-          <a href="#" className="text-white hover:text-gray-300">
-            Home
+    <div className="bg-violet-600 p-6">
+      <div className="container flex mx-auto justify-between ">
+        <div className="text-white font-semibold text-xl ">
+          <h1>Smart Parking</h1>
+        </div>
+        <div className=" space-x-10">
+          <a
+            href="signup"
+            className="text-white hover:text-gray-300   "
+          >
+            {admin && "Sign In"}
           </a>
-          <a href="#" className="text-white hover:text-gray-300">
-          Services
+          <a
+            href="login"
+            className="text-white hover:text-gray-300  "
+          >
+            {admin && "Sign Up"}
           </a>
-          <a href="#" className="text-white hover:text-gray-300">
-           About
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
-            Signout
+          <a
+            href="#"
+            className="text-white hover:text-gray-300 bg-slate-900 rounded-md px-5 py-3  "
+            onClick={disBtns}
+          >
+            Admin
           </a>
         </div>
       </div>
