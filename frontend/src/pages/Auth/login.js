@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../Components/Button";
 function Login(props) {
   return (
-    <div className=" h-screen flex bg-[#4EA2F0] justify-around ">
+    <div className=" h-screen flex bg-[#daf540] justify-around ">
       <div className=" w-[500px] h-[608px] my-auto text-[96px] text-[#FFFFFF] font-sans ">
         <h1>WELCOME</h1>
         <h1>TO</h1>
