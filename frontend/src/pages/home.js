@@ -1,46 +1,59 @@
 import React from "react";
-import callouts from "../info";
-import Navbar from "./navbar";
-import About from "./About";
-
+import NavBar from "../Components/Nav";
+import Card from "../Components/Card";
 function Home() {
   return (
-    <div>
-      <Navbar />
+    <div className="  ">
+      <div>
+        <NavBar
+          img="/Assests/logo.png"
+          item1="Home"
+          item2="Feedback"
+          btnname="Admin"
+        />
+      </div>
 
-      <div className="bg-gray-200   ">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
-          <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
-            <h2 className="text-2xl font-bold text-gray-900">
-              Navigate to Stress-Free Parking
-            </h2>
+      <div className="">
+        <div className="flex justify-evenly ">
+          <div className=" ">
+            <Card
+              cardimglink="/Assests/d.png"
+              cardname="Disabled Parking"
+              hreflink="dparking"
+              cbtnstyle="hidden"
+              cnamestyle="text-center m-5 text-2xl font-bold hover:text-xl"
 
-            <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
-              {callouts.map((callout) => (
-                <div key={callout.name} className="group relative">
-                  <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
-                    <img
-                      src={callout.imageSrc}
-                      alt={callout.imageAlt}
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
-                  <h3 className="mt-6 text-sm text-gray-500">
-                    <a href={callout.href}>
-                      <span className="absolute inset-0" />
-                      {callout.name}
-                    </a>
-                  </h3>
-                  <p className="text-base font-semibold text-gray-900">
-                    {callout.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+            />
+
+            <Card
+              cardimglink="/Assests/e.png"
+              cardname="EV Parking"
+              hreflink="eparking"
+              cbtnstyle="hidden"
+              cnamestyle="text-center m-5 text-2xl font-bold hover:text-xl"
+
+            />
+          </div>
+          <div className=" ">
+            <Card
+              cardimglink="/Assests/c.png"
+              cardname="Car Parking"
+              hreflink="cparking"
+              cbtnstyle="hidden"
+              cnamestyle="text-center m-5 text-2xl font-bold hover:text-xl"
+            />
+
+            <Card
+              cardimglink="/Assests/b.png"
+              cardname="Bicycle Parking"
+              hreflink="bparking"
+              cbtnstyle="hidden"
+              cnamestyle="text-center m-5 text-2xl font-bold hover:text-xl"
+
+            />
           </div>
         </div>
       </div>
-      <About />
     </div>
   );
 }
