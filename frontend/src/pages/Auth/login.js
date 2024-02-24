@@ -26,10 +26,10 @@ function Login(props) {
             />
           </div>
           <div className="flex justify-around  p-5 text-2xl font-sans text-slate-50">
-            <Button
+            <a href="dashboard"><Button
               buttonname="Submit"
               btnstyle="bg-[#4EA2F0]   p-2 rounded-md hover:bg-gray-600"
-            />
+            /></a>
           </div>
         </div>
       </div>
