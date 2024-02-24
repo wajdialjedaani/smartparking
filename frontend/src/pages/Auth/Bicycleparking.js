@@ -1,9 +1,8 @@
 import React from "react";
 import NavBar from "../../Components/Nav";
-function Carparking(){
-    return(
-        
-      <div className=" h-screen ">
+function Bicycleparking() {
+  return (
+    <div className=" h-screen ">
       <div>
         <NavBar
           img="/Assests/logo.png"
@@ -38,7 +37,6 @@ function Carparking(){
         </tbody>
       </table>
     </div>
-    
-    )
+  );
 }
-export default Carparking;
+export default Bicycleparking;

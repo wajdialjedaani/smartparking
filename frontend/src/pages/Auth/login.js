@@ -1,80 +1,39 @@
 import React from "react";
-
-export default function Login() {
+import Button from "../../Components/Button";
+function Login(props) {
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-violet-600 h-screen">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
-          className="mx-auto h-20 w-auto"
-          src="Assests/Logo.png"
-          alt="Your Company"
-        />
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Your parking companion is just a login away
-        </h2>
+    <div className=" h-screen flex bg-[#4EA2F0] justify-around ">
+      <div className=" w-[500px] h-[608px] my-auto text-[96px] text-[#FFFFFF] font-sans ">
+        <h1>WELCOME</h1>
+        <h1>TO</h1>
+        <h1>SMART</h1>
+        <h1>PARKING</h1>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Email address
-            </label>
-            <div className="mt-2">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
+      <div className="flex justify-center mt-[65px] my-auto bg-[#FEFEFE] rounded-xl">
+        <div className="border-collapse border border-slate-200 w-[500px] h-[608px] shadow-2xl rounded-[10px]   ">
+          <h1 className="text-center  pt-[150px] text-2xl font-bold ">LOGIN</h1>
+          <div className="grid gap-5 p-auto m-8 text-xl">
+            <input
+              type="text"
+              placeholder="Username"
+              className="border-collapse border border-slate-200 text-center h-[60px] bg-[#D9D9D9] rounded-[10px]"
+            />
+            <input
+              type="text"
+              placeholder="Password"
+              className="border-collapse border border-slate-200 text-center h-[60px] bg-[#D9D9D9] rounded-[10px]"
+            />
           </div>
-
-          <div>
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
-            </div>
-            <div className="mt-2">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
+          <div className="flex justify-around  p-5 text-2xl font-sans text-slate-50">
+            <Button
+              buttonname="Submit"
+              btnstyle="bg-[#4EA2F0]   p-2 rounded-md hover:bg-gray-600"
+            />
           </div>
-
-          <div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-slate-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Sign in
-            </button>
-          </div>
-        </form>
-
-        <p className="mt-10 text-center text-sm text-gray-500">
-          <a
-            href="signup"
-            className="font-semibold leading-6 text-slate-900 hover:text-slate-700"
-          >
-            Sign Up
-          </a>
-        </p>
+        </div>
       </div>
     </div>
   );
 }
+export default Login;
