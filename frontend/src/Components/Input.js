@@ -1,5 +1,5 @@
 import React from "react";
-function Input(props) {
+function InputFeild(props) {
   return (
     <>
       <input
@@ -10,4 +10,4 @@ function Input(props) {
     </>
   );
 }
-export default Input;
+export default InputFeild;

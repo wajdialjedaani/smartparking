@@ -1,12 +1,12 @@
 import React from "react";
-import Input from "../../Components/Input";
-import Button from "../../Components/Button";
+import InputFeild from '../../components/Input'
+import Button from "../../components/Button";
 
 function Bikeparking() {
   return (
     <div className="bg-violet-600 w-screen h-screen">
       <div className=" flex items-center justify-center p-20 space-x-5 ">
-        <Input inputplaceholdername="Enter Address..." />
+        <InputFeild inputplaceholdername="Enter Address..." />
 
         <Button buttonname="Search" />
       </div>
