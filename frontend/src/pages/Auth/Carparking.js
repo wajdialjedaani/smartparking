@@ -1,21 +1,9 @@
 import React from "react";
-<<<<<<< HEAD
-import InputFeild from '../../components/Input';
-import Button from "../../components/Button";
-
+import NavBar from "../../components/Nav";
 function Carparking() {
   return (
-    <div className="bg-violet-600 w-screen h-screen">
-      <div className=" flex items-center justify-center p-20 space-x-5 ">
-        <InputFeild inputplaceholdername="Enter Address..." />
 
-        <Button buttonname="Search" />
-=======
-import NavBar from "../../Components/Nav";
-function Carparking(){
-    return(
-        
-      <div className=" h-screen ">
+    <div className=" h-screen ">
       <div>
         <NavBar
           img="/Assests/logo.png"
@@ -23,12 +11,11 @@ function Carparking(){
           item2="Feedback"
           btnname="Admin"
         />
->>>>>>> df521e94f51814b625154de942e0cd860749a068
       </div>
       <div className=" flex justify-center p-5 ">
         <div className="bg-gray-200 w-[650px] h-[450px]  "></div>
       </div>
-      
+
       <table className="m-auto border-collapse border border-slate-600 ">
         <thead className="">
           <tr className="">
@@ -51,7 +38,7 @@ function Carparking(){
         </tbody>
       </table>
     </div>
-    
-    )
+
+  )
 }
 export default Carparking;

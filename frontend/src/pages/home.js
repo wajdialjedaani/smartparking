@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "../Components/Nav";
-import Card from "../Components/Card";
+import NavBar from "../components/Nav";
+import Card from "../components/Card";
 function Home() {
   return (
     <div className="  ">

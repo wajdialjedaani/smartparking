@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../../Components/Nav";
+import NavBar from "../../components/Nav";
 function Evparking() {
   return (
     <div className=" h-screen ">

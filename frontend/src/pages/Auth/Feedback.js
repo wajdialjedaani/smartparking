@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "../../Components/Nav";
-import Button from "../../Components/Button";
+import NavBar from '../../components/Nav'
+import Button from "../../components/Button";
 function Feedback() {
   return (
     <div className=" h-screen ">

@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../../Components/Nav";
+import NavBar from "../../components/Nav";
 function Bicycleparking() {
   return (
     <div className=" h-screen ">
@@ -14,7 +14,7 @@ function Bicycleparking() {
       <div className=" flex justify-center p-5 ">
         <div className="bg-gray-200 w-[650px] h-[450px]  "></div>
       </div>
-      
+
       <table className="m-auto border-collapse border border-slate-600 ">
         <thead className="">
           <tr className="">
