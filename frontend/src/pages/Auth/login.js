@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../components/Button";
+import Button from "../../Components/Button";
 function Login(props) {
   return (
     <div className=" h-screen flex bg-[#4EA2F0] justify-around ">

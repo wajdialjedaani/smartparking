@@ -1,6 +1,6 @@
 import React from "react";
-import InputFeild from '../../components/Input'
-import Button from "../../components/Button";
+import InputFeild from '../../Components/Input'
+import Button from "../../Components/Button";
 
 function Bikeparking() {
   return (

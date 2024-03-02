@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../../components/Nav";
+import NavBar from "../../Components/Nav";
 function Disabledparking() {
   return (
     <div className=" h-screen ">
