@@ -8,7 +8,6 @@ const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate authentication check (you would replace this with your actual authentication logic)
     setTimeout(() => {
       const loggedInUser = localStorage.getItem('user');
       setUser(loggedInUser ? JSON.parse(loggedInUser) : null);
@@ -17,13 +16,11 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const setLogin = (userData) => {
-    // Simulate login process (you would replace this with your actual authentication logic)
     localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
   };
 
   const logout = () => {
-    // Simulate logout process (you would replace this with your actual authentication logic)
     setUser(null);
   };
 
