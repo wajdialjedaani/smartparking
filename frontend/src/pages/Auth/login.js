@@ -1,6 +1,34 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import Button from "../../Components/Button";
-function Login(props) {
+import { signin } from "../../apis/api";
+import { useState } from "react";
+import { AuthContext } from '../../contexts/authContext';
+import { useNavigate } from 'react-router-dom';
+
+function Login() {
+  const { user, setLogin, logout, isLoading } = useContext(AuthContext);
+  const navigate = useNavigate(); // Initialize useNavigate
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleSubmit = () => {
+    console.log(formData);
+    signin(formData)
+      .then((data) => {
+        console.log(data);
+        setLogin(data.data)
+      })
+      .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    } else {
+      console.log("User is not logged in");
+    }
+  }, [user]);
+
   return (
     <div className=" h-screen flex bg-[#4EA2F0] justify-around ">
       <div className=" w-[500px] h-[608px] my-auto text-[96px] text-[#FFFFFF] font-sans ">
@@ -16,21 +44,28 @@ function Login(props) {
           <div className="grid gap-5 p-auto m-8 text-xl">
             <input
               type="text"
-              placeholder="Username"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              placeholder="Email/Username"
               className="border-collapse border border-slate-200 text-center h-[60px] bg-[#D9D9D9] rounded-[10px]"
             />
             <input
               type="text"
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               placeholder="Password"
               className="border-collapse border border-slate-200 text-center h-[60px] bg-[#D9D9D9] rounded-[10px]"
             />
           </div>
           <div className="flex justify-around  p-5 text-2xl font-sans text-slate-50">
-            <a href="dashboard"><Button
+            <Button
               buttonname="Submit"
               btnstyle="bg-[#4EA2F0]   p-2 rounded-md hover:bg-gray-600"
-            /></a>
+              onClick={handleSubmit}
+
+            />
           </div>
+          {isLoading ? <p>Loading...</p> : null}
         </div>
       </div>
     </div>

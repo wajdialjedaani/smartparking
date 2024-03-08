@@ -8,26 +8,26 @@ import Bicycleparking from "./pages/Auth/Bicycleparking";
 import Parkingdetails from "./pages/Auth/Parkingdetails";
 import Feedback from "./pages/Auth/Feedback";
 import Login from "./pages/Auth/login";
-import Dashboard from "./pages/Auth/Dashboard";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./ProtectedRoutes";
+import { AuthProvider } from "./contexts/authContext";
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="dparking" element={<Disabledparking />} />
-        <Route path="cparking" element={<Carparking />} />
-        <Route path="bparking" element={<Bicycleparking />} />
-        <Route path="eparking" element={<Evparking />} />
-        <Route path="parkingdet" element={<Parkingdetails />} />
-        <Route path="feedback" element={<Feedback />} />
-        <Route path="login" element={<Login />} />
-        <Route path="dashboard" element={<Dashboard />} />
-
-        
-        
-
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="dparking" element={<Disabledparking />} />
+          <Route path="cparking" element={<Carparking />} />
+          <Route path="bparking" element={<Bicycleparking />} />
+          <Route path="eparking" element={<Evparking />} />
+          <Route path="parkingdet" element={<Parkingdetails />} />
+          <Route path="feedback" element={<Feedback />} />
+          <Route path="login" element={<Login />} />
+          <Route path="dashboard" element={<ProtectedRoute element={Dashboard} />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
