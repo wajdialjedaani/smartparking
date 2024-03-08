@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
       const loggedInUser = localStorage.getItem('user');
       setUser(loggedInUser ? JSON.parse(loggedInUser) : null);
       setIsLoading(false);
-    }, 1000);
+    }, 3000);
   }, []);
 
   const setLogin = (userData) => {

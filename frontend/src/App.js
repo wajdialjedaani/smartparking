@@ -11,6 +11,8 @@ import Login from "./pages/Auth/login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoutes";
 import { AuthProvider } from "./contexts/authContext";
+import NotFound from "./pages/NotFound";
+import CreateParking from "./pages/Station/create";
 function App() {
   return (
     <AuthProvider>
@@ -24,7 +26,9 @@ function App() {
           <Route path="parkingdet" element={<Parkingdetails />} />
           <Route path="feedback" element={<Feedback />} />
           <Route path="login" element={<Login />} />
-          <Route path="dashboard" element={<ProtectedRoute element={Dashboard} />} />
+          <Route path="/admin/dashboard" element={<ProtectedRoute element={Dashboard} />} />
+          <Route path="/admin/station/create" element={<ProtectedRoute element={CreateParking} />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </AuthProvider>

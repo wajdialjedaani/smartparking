@@ -4,7 +4,7 @@ import { signin } from "../../apis/api";
 import { useState } from "react";
 import { AuthContext } from '../../contexts/authContext';
 import { useNavigate } from 'react-router-dom';
-
+import { Hourglass } from 'react-loader-spinner'
 function Login() {
   const { user, setLogin, logout, isLoading } = useContext(AuthContext);
   const navigate = useNavigate(); // Initialize useNavigate
@@ -23,7 +23,7 @@ function Login() {
   }
   useEffect(() => {
     if (user) {
-      navigate("/dashboard");
+      navigate("/admin/dashboard");
     } else {
       console.log("User is not logged in");
     }
@@ -65,7 +65,19 @@ function Login() {
 
             />
           </div>
-          {isLoading ? <p>Loading...</p> : null}
+
+          <div className="flex justify-center">
+            {<Hourglass
+              visible={isLoading}
+              height="40"
+              width="40"
+              ariaLabel="hourglass-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              colors={['#4EA2F0', '#4EA2F0']}
+            />
+            }
+          </div>
         </div>
       </div>
     </div>

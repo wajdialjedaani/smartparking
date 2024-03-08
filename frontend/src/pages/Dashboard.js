@@ -2,17 +2,34 @@ import React from "react";
 import { AuthContext } from "../contexts/authContext";
 function Dashboard() {
   const { user, logout } = React.useContext(AuthContext);
+  const parkings = [
+    {
+      name: "Disabledparking",
+      path: "/dparking"
+    },
+    {
+      name: "Carparking",
+      path: "/cparking"
+    },
+    {
+      name: "Bicycleparking",
+      path: "/bparking"
+    },
+    {
+      name: "Evparking",
+      path: "/eparking"
+    },
+  ]
   return (
-    <div className="flex  h-screen ">
-      <div className="bg-[#4EA2F0]  w-1/5">
-      </div>
-      <div className="bg-[#FFFFFF]  w-full flex flex-col ">
-        <div className="bg-gray-200 h-[70px] flex flex-row-reverse">
-          <button className="bg-gray-400  rounded m-2 p-2" onClick={logout}>LogOut</button>
-        </div>
-        <div className="bg-gray-400 h-full"></div>
-        <div className="bg-gray-600 h-[70px]"></div>
-      </div>
+    <div className="flex flex-wrap justify-between">
+      {parkings.map((parking) => {
+        return (
+          <div className="basis-1/2 h-[300px] border items-center flex justify-center">
+            <h1 className="text-4xl font-bold">{parking.name}</h1>
+          </div>
+        )
+      }
+      )}
     </div>
   );
 }
