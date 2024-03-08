@@ -7,12 +7,8 @@ exports.storeImage = (directory, file) => {
   // Generate a unique filename using UUID
   const uniqueFilename = uuidv4() + '.' + file.originalname.split('.').pop();
 
-  // Create the full path to store the image
   const imagePath = `${directory}/${uniqueFilename}`;
-  // Ensure the directory exists; if not, create it
-  if (!fs.existsSync(directory)) {
-    fs.mkdirSync(directory, { recursive: true });
-  }
+
 
   return new Promise((resolve, reject) => {
     // Write the file to the specified directory
