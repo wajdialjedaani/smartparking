@@ -10,10 +10,9 @@ const Stations = mongoose.model('Stations')
 
 async function register(req, res) {
   try {
-    const { firstName, lastName, email, password, orgName, stationName, phone } = req.body;
+    const { firstName, lastName, email, password, orgName, stationName, phone, fil } = req.body;
     // Check if user already exists
     const emailExists = await Users.findOne({ email: email });
-    console.log('emailExists', emailExists)
     if (emailExists) {
       return responseHandler.handleErrorResponse(res, 400, 'Email already exists')
     }
