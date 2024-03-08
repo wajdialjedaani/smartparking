@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     // Simulate logout process (you would replace this with your actual authentication logic)
-    localStorage.removeItem('user');
+    setUser(null);
   };
 
   return (
