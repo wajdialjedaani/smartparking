@@ -7,6 +7,7 @@ import Evparking from "./pages/Auth/Evparking";
 import Bicycleparking from "./pages/Auth/Bicycleparking";
 import Parkingdetails from "./pages/Auth/Parkingdetails";
 import Feedback from "./pages/Auth/Feedback";
+import Feedmessage from "./pages/Auth/Feedmessage";
 import Login from "./pages/Auth/login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoutes";
@@ -26,6 +27,7 @@ function App() {
           <Route path="parkingdet" element={<Parkingdetails />} />
           <Route path="feedback" element={<Feedback />} />
           <Route path="login" element={<Login />} />
+          <Route path="feedmsg" element={<Feedmessage />} />
           <Route path="/admin/dashboard" element={<ProtectedRoute element={Dashboard} />} />
           <Route path="/admin/station/create" element={<ProtectedRoute element={CreateParking} />} />
           <Route path="*" element={<NotFound />} />
