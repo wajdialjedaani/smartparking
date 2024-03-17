@@ -24,7 +24,7 @@ function CreateParking() {
     formData.append('location', station.location)
     formData.append('capacity', station.capacity)
     formData.append('image', station.image)
-    const response = await createstation(formData, token = user.token)
+    const response = await createstation(formData)
     console.log(response)
   }
   return (
