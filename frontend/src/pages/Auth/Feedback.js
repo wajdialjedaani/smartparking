@@ -15,7 +15,7 @@ function Feedback() {
       <div className="flex justify-center my-[50px]">
         <div className="border-collapse border border-slate-200 w-[400px] h-[550px] shadow-2xl rounded-[10px]  ">
           <h1 className="text-center  pt-8 text-2xl font-bold ">
-            Fedback Form
+            Feedback Form
           </h1>
           <div className="grid gap-5 p-auto m-8 text-xl">
             <input
@@ -33,11 +33,12 @@ function Feedback() {
               placeholder="Rating"
               className="border-collapse border border-slate-200 text-center h-[60px] bg-[#D9D9D9] rounded-[10px]"
             />
-            <input
-              type="text"
+            <textarea
               placeholder="Comments"
-              className="border-collapse border border-slate-200 text-center h-[90px] bg-[#D9D9D9] rounded-[10px]"
-            />
+              rows = "7"
+              className="border-collapse border border-slate-200 text-center resize-none h-[90px] bg-[#D9D9D9] rounded-[10px]"
+            ></textarea>
+
           </div>
           <div className="flex justify-around  p-5 text-2xl font-sans text-slate-50">
             <Button buttonname="Cancel" btnstyle=" bg-gray-900 p-2 rounded-md hover:bg-gray-600" />
