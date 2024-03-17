@@ -8,6 +8,7 @@ import { Hourglass } from 'react-loader-spinner'
 function Login() {
   const { user, setLogin, logout, isLoading } = useContext(AuthContext);
   const navigate = useNavigate(); // Initialize useNavigate
+  const [error, setError] = useState(null); // Initialize error with null
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,9 +18,18 @@ function Login() {
     signin(formData)
       .then((data) => {
         console.log(data);
+        if (!data.success) {
+          if (data.errors) {
+            setError("invalid credentials")
+          }
+          if (data.message) {
+            setError(data.message)
+          }
+          return;
+        }
         setLogin(data.data)
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("err", err));
   }
   useEffect(() => {
     if (user) {
@@ -77,6 +87,9 @@ function Login() {
               colors={['#4EA2F0', '#4EA2F0']}
             />
             }
+          </div>
+          <div className="flex justify-center">
+            {error !== null && <p className="text-red-500">{error}</p>}
           </div>
         </div>
       </div>
