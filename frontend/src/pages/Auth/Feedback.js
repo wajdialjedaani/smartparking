@@ -15,7 +15,7 @@ function Feedback() {
       <div className="flex justify-center my-[50px]">
         <div className="border-collapse border border-slate-200 w-[400px] h-[550px] shadow-2xl rounded-[10px]  ">
           <h1 className="text-center  pt-8 text-2xl font-bold ">
-            Feedback Form
+            Fedback Form
           </h1>
           <div className="grid gap-5 p-auto m-8 text-xl">
             <input
