@@ -74,10 +74,12 @@ function Create() {
                     btnstyle=" bg-gray-900 p-2 rounded-md hover:bg-gray-600"
                   />
 
+                 <a href="pstation">
                   <Button
                     buttonname="Submit"
                     btnstyle="bg-[#4EA2F0]   p-2 rounded-md hover:bg-gray-600"
                   />
+                  </a>
                 </div>
               </div>
             </div>
