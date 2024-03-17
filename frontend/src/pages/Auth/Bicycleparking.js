@@ -5,7 +5,7 @@ function Bicycleparking() {
     <div className=" h-screen ">
       <div>
         <NavBar
-          img="/Assests/logo.png"
+          img="/Assests/logo.jpg"
           item1="Home"
           item2="Feedback"
           btnname="Admin"
