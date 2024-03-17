@@ -6,7 +6,7 @@ function Parkingdetails() {
     <div className="  ">
       <div>
         <NavBar
-          img="/Assests/logo.jpg"
+          img="/Assests/logo.png"
           item1="Home"
           item2="Feedback"
           btnname="Admin"

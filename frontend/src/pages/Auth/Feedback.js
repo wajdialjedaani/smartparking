@@ -33,12 +33,11 @@ function Feedback() {
               placeholder="Rating"
               className="border-collapse border border-slate-200 text-center h-[60px] bg-[#D9D9D9] rounded-[10px]"
             />
-            <textarea
+            <input
+              type="text"
               placeholder="Comments"
-              rows = "7"
-              className="border-collapse border border-slate-200 text-center resize-none h-[90px] bg-[#D9D9D9] rounded-[10px]"
-            ></textarea>
-
+              className="border-collapse border border-slate-200 text-center h-[90px] bg-[#D9D9D9] rounded-[10px]"
+            />
           </div>
           <div className="flex justify-around  p-5 text-2xl font-sans text-slate-50">
             <Button buttonname="Cancel" btnstyle=" bg-gray-900 p-2 rounded-md hover:bg-gray-600" />

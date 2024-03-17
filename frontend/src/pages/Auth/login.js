@@ -50,7 +50,7 @@ function Login() {
               className="border-collapse border border-slate-200 text-center h-[60px] bg-[#D9D9D9] rounded-[10px]"
             />
             <input
-              type="password"  // Change type to "password"
+              type="text"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               placeholder="Password"
