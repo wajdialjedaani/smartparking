@@ -7,10 +7,7 @@ const jwt = require('jsonwebtoken');
 // const User=
 const login = async (req, res) => {
   const { email, password } = req.body;
-  console.log('email', email)
   const user = await Users.findOne({ email: email })
-
-  console.log('user', user)
   if (!user) {
     return responseHandler.handleErrorResponse(res, 400, 'Email or password is wrong')
   }
@@ -28,6 +25,7 @@ const login = async (req, res) => {
     _id: user._id,
   }
   const token = jwt.sign({ user: User }, process.env.JWT_SECRET, { expiresIn: '24h' }, { algorithm: 'HS256' });
+
   User['token'] = token
   User['profileImage'] = user.profileImg ? hostURL + user.profileImg : ""
   return responseHandler.handleSuccessObject(res, User)

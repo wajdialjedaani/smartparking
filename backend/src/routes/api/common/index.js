@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-router.get('/test', (req, res) => { return res.send("reihruierhiueryuei") })
-
+router.use('/stations', require('./stations'));
 
 module.exports = router;

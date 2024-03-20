@@ -13,24 +13,27 @@ import ProtectedRoute from "./ProtectedRoutes";
 import { AuthProvider } from "./contexts/authContext";
 import NotFound from "./pages/NotFound";
 import CreateParking from "./pages/Station/create";
+import { AlertProvider } from "./contexts/alertContext";
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="dparking" element={<Disabledparking />} />
-          <Route path="cparking" element={<Carparking />} />
-          <Route path="bparking" element={<Bicycleparking />} />
-          <Route path="eparking" element={<Evparking />} />
-          <Route path="parkingdet" element={<Parkingdetails />} />
-          <Route path="feedback" element={<Feedback />} />
-          <Route path="login" element={<Login />} />
-          <Route path="/admin/dashboard" element={<ProtectedRoute element={Dashboard} />} />
-          <Route path="/admin/station/create" element={<ProtectedRoute element={CreateParking} />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
+      <AlertProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="dparking" element={<Disabledparking />} />
+            <Route path="cparking" element={<Carparking />} />
+            <Route path="bparking" element={<Bicycleparking />} />
+            <Route path="eparking" element={<Evparking />} />
+            <Route path="parkingdet" element={<Parkingdetails />} />
+            <Route path="feedback" element={<Feedback />} />
+            <Route path="login" element={<Login />} />
+            <Route path="/admin/dashboard" element={<ProtectedRoute element={Dashboard} />} />
+            <Route path="/admin/station/create" element={<ProtectedRoute element={CreateParking} />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </AlertProvider>
     </AuthProvider>
   );
 }

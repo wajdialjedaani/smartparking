@@ -2,21 +2,30 @@
 const jwt = require('jsonwebtoken');
 const responseHandler = require('@helpers/responseHandler');
 
+const getTokenFromHeaders = (req) => {
+  const { headers: { authorization } } = req
+  if (authorization && authorization.split(' ')[0] === 'Bearer') {
+    return authorization.split(' ')[1]
+  }
+
+  return null
+}
 const authenticateToken = (req, res, next) => {
-  const token = req.header('Authorization');
+  const token = getTokenFromHeaders(req)
 
   if (!token) {
     return responseHandler.handleErrorResponse(res, 401, 'Bearer-Token is missing');
   }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      return responseHandler.handleErrorResponse(res, 401, 'Invalid token');
-    }
-
-    req.user = user;
+  try {
+    const decode = jwt.verify(token, process.env.JWT_SECRET, { algorithm: 'HS256' })
+    console.log('decode', decode)
+    req.user = decode.user;
     next();
-  });
+  }
+  catch (err) {
+    console.log('err', err)
+    return responseHandler.handleErrorResponse(res, 401, 'Invalid Token');
+  }
 };
 
 const adminAuthenticateToken = (req, res, next) => {

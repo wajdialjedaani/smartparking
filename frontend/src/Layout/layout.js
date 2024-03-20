@@ -2,6 +2,7 @@ import React, { Children } from "react";
 import { AuthContext } from "../contexts/authContext";
 import { adminRoutes } from "../Routes";
 import { useNavigate } from "react-router-dom";
+import Alert from "../Components/Alert";
 function Layout({ children }) {
   const navigate = useNavigate();
   const { user, logout } = React.useContext(AuthContext);
@@ -38,7 +39,10 @@ function Layout({ children }) {
         <div className="bg-gray-200 h-[70px] flex flex-row-reverse">
           <button className="bg-gray-400  rounded m-2 p-2" onClick={logout}>LogOut</button>
         </div>
-        <div className="h-full">{children}</div>
+        <div className="h-full">
+          {children}
+          <Alert />
+        </div>
         <div className="bg-gray-600 h-[70px]"></div>
       </div>
     </div>

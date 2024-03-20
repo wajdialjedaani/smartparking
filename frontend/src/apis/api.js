@@ -14,11 +14,12 @@ export const signin = (formData) => {
     .catch(err => console.log(err))
 }
 
-export const createstation = (formData) => {
-  return fetch(`${baseUrl}/stations/`, {
+export const createstation = (formData, token) => {
+  return fetch(`${baseUrl}/common/stations/create`, {
     method: 'post',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify(formData)
   })

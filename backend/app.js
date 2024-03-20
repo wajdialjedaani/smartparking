@@ -1,7 +1,5 @@
 require('module-alias/register')
 const express = require('express')
-const bodyParser = require('body-parser')
-const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose')
@@ -18,9 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cors());
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const dotenv = require('dotenv');
 dotenv.config()
 mongoose.set("strictQuery", false);
