@@ -10,11 +10,11 @@ export const adminRoutes = [
     "subRoutes": [
       {
         "name": "Create",
-        "path": "/admin/station/create"
+        "path": "/admin/stations/create"
       },
       {
         "name": "View",
-        "path": "/admin/station/view"
+        "path": "/admin/stations/view"
       }
     ]
   },

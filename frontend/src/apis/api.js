@@ -14,14 +14,25 @@ export const signin = (formData) => {
     .catch(err => console.log(err))
 }
 
+export const getstations = (token) => {
+  return fetch(`${baseUrl}/common/stations`, {
+    method: 'get',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log(err))
+}
+
 export const createstation = (formData, token) => {
   return fetch(`${baseUrl}/common/stations/create`, {
     method: 'post',
     headers: {
-      'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     },
-    body: JSON.stringify(formData)
+    body: formData
   })
     .then(response => response.json())
     .then(data => data)

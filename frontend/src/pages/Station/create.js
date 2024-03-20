@@ -3,8 +3,10 @@ import { useState } from 'react'
 import { createstation } from '../../apis/api'
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/authContext'
+import { AlertContext } from '../../contexts/alertContext'
 function CreateParking() {
   const { user } = useContext(AuthContext)
+  const { showAlert } = useContext(AlertContext)
   const [station, setStation] = useState({
     name: '',
     location: '',
@@ -23,8 +25,19 @@ function CreateParking() {
     formData.append('name', station.name)
     formData.append('location', station.location)
     formData.append('capacity', station.capacity)
+    formData.append('orgName', station.orgName)
+
     formData.append('file', station.image)
     const response = await createstation(formData, user.token)
+    console.log("fff", formData, response)
+    if (response && !response.success) {
+      if (response.errors && response.errors.length > 0) {
+        response.errors.forEach(error => {
+          showAlert(error.path, error.path + ' ' + error.msg, error.path)
+        })
+
+      }
+    }
     console.log(response)
   }
   return (
@@ -40,6 +53,10 @@ function CreateParking() {
           <input type="text" name="name" onChange={handleChange} className='border border-blue-200 p-2 rounded w-full' />
         </div>
         <div className='flex items-center'>
+          <label className='basis-1/3'>Organization Name</label>
+          <input type="text" name="orgName" onChange={handleChange} className='border border-blue-200 p-2 rounded w-full' />
+        </div>
+        <div className='flex items-center'>
           <label className='basis-1/3'>Station Location</label>
           <input type="text" name="location" onChange={handleChange} className='border border-blue-200 p-2 rounded w-full' />
         </div>
@@ -47,6 +64,7 @@ function CreateParking() {
           <label className='basis-1/3'>Station Capacity</label>
           <input type="text" name="capacity" onChange={handleChange} className='border border-blue-200 p-2 rounded w-full' />
         </div>
+
         <div className='flex justify-between'>
           <button className='bg-red-500 text-white p-2 rounded w-20'>Cancel</button>
           <button className='bg-blue-500 text-white p-2 rounded w-20' onClick={handleSubmit}>Create</button>

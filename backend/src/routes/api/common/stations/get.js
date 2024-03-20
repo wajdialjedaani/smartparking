@@ -4,7 +4,7 @@ const responseHandler = require('@helpers/responseHandler');
 const get = async (req, res) => {
   try {
     const stations = await Stations.find();
-    return responseHandler.handleSuccessResponse(res, stations);
+    return responseHandler.handleSuccessObject(res, stations);
   } catch (error) {
     console.log('unknow error', error);
     return responseHandler.handleErrorResponse(res, 500, error.message);

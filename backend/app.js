@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
+// const bodyParser = require('body-parser')
 // k=async ()=>{
 //     const salt = await bcrypt.genSalt(10);
 //     const hashedPassword = await bcrypt.hash("Soncur@030120", salt);
@@ -14,7 +15,8 @@ const bcrypt = require('bcryptjs')
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
-
+// app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const dotenv = require('dotenv');

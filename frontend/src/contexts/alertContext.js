@@ -2,12 +2,12 @@ import React, { createContext, useState } from 'react'
 const AlertContext = createContext()
 const AlertProvider = ({ children }) => {
   const [alerts, setAlert] = useState([])
-  const showAlert = (message, type) => {
-    setAlert([...alerts, { message, type }])
+  const showAlert = (id, message, type) => {
+    setAlert(prevAlerts => [...prevAlerts, { id, message, type }]);
     setTimeout(() => {
-      setAlert(alerts.filter((alert) => alert.message !== message))
-    }, 3000)
-  }
+      setAlert(prevAlerts => prevAlerts.filter(alert => alert.id !== id));
+    }, 6000);
+  };
   return (
     <AlertContext.Provider value={{ alerts, showAlert }}>
       {children}

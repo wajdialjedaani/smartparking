@@ -14,6 +14,7 @@ import { AuthProvider } from "./contexts/authContext";
 import NotFound from "./pages/NotFound";
 import CreateParking from "./pages/Station/create";
 import { AlertProvider } from "./contexts/alertContext";
+import Stations from "./pages/Station/stations";
 function App() {
   return (
     <AuthProvider>
@@ -29,7 +30,8 @@ function App() {
             <Route path="feedback" element={<Feedback />} />
             <Route path="login" element={<Login />} />
             <Route path="/admin/dashboard" element={<ProtectedRoute element={Dashboard} />} />
-            <Route path="/admin/station/create" element={<ProtectedRoute element={CreateParking} />} />
+            <Route path="/admin/stations/" element={<ProtectedRoute element={Stations} />} />
+            <Route path="/admin/stations/create" element={<ProtectedRoute element={CreateParking} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
