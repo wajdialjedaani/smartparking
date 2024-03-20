@@ -7,13 +7,21 @@ const jwt = require('jsonwebtoken');
 // const User=
 const login = async (req, res) => {
   const { email, password } = req.body;
+<<<<<<< HEAD
   const user = await Users.findOne({ email: email })
+=======
+  //console.log('email', email)
+  try{
+  const user = await Users.findOne({ email: email })
+
+  //console.log('user', user)
+>>>>>>> e2edd57ad7877efa76a87bdd1bfd9ffea8b3fd2c
   if (!user) {
     return responseHandler.handleErrorResponse(res, 400, 'Email or password is wrong')
   }
   // Check if password is correct
-  const validPass = await bcrypt.compare(password, user.password);
-  if (!validPass) {
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
     return responseHandler.handleErrorResponse(res, 400, 'Email or password is wrong')
   }
   // Create and assign a token
@@ -29,5 +37,8 @@ const login = async (req, res) => {
   User['token'] = token
   User['profileImage'] = user.profileImg ? hostURL + user.profileImg : ""
   return responseHandler.handleSuccessObject(res, User)
+} catch (error) {
+  return responseHandler.handleErrorResponse(res, 400, error.message);
+}
 }
 module.exports = login;
