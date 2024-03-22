@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-
 import L from 'leaflet';
-
+import SearchBox from './MapSearch';
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -17,6 +16,12 @@ const MapView = () => {
   const [markerPosition, setMarkerPosition] = useState(null);
   const [userLocation, setUserLocation] = useState([0, 0]);
 
+  const handleSearchSelect = (item) => {
+    console.log(item)
+    const { lat, lon } = item;
+    setMarkerPosition([lat, lon]);
+    setUserLocation([lat, lon]);
+  }
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -35,25 +40,6 @@ const MapView = () => {
       setUserLocation([51.505, -0.09]);
     }
   }, []);
-
-  const handleSearch = async () => {
-    if (searchQuery.trim() === '') return;
-
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}&addressdetails=1&limit=1`
-      );
-      const data = await response.json();
-      if (data && data.length > 0) {
-        const { lat, lon } = data[0];
-        setMarkerPosition([lat, lon]);
-        setUserLocation([lat, lon]);
-      }
-    } catch (error) {
-      console.error('Error fetching geolocation:', error);
-    }
-  };
-
   const ChangeMapView = ({ center }) => {
     const map = useMap();
     map.setView(center);
@@ -61,20 +47,10 @@ const MapView = () => {
   };
 
   return (
-    <div>
-      <div className='p-2 flex justify-center gap-4'>
-        <input
-          type="text"
-          className='border p-2 w-1/2'
-          placeholder="Enter address..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <button onClick={handleSearch} className='bg-blue-600 p-2 rounded text-white shadow'>Search</button>
-      </div>
-      <div className='flex justify-center'>
+    <div className='flex '>
+      <div className='w-full'>
 
-        <MapContainer center={userLocation} zoom={13} scrollWheelZoom={true} style={{ width: "50%", height: "50vh" }}>
+        <MapContainer center={userLocation} zoom={13} scrollWheelZoom={true} style={{ width: "100%", height: "50vh" }}>
           <ChangeMapView center={userLocation} />
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -89,7 +65,9 @@ const MapView = () => {
           )}
         </MapContainer>
       </div>
-
+      <div className='w-full'>
+        <SearchBox handleSearchSelect={handleSearchSelect} />
+      </div>
     </div>
   );
 };

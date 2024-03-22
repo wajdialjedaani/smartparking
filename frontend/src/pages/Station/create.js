@@ -68,9 +68,8 @@ function CreateParking() {
         <div className='flex justify-between'>
           <button className='bg-red-500 text-white p-2 rounded w-20'>Cancel</button>
           <button className='bg-blue-500 text-white p-2 rounded w-20' onClick={handleSubmit}>Create</button>
-
-
         </div>
+
       </div>
     </div>
   )

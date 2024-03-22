@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound";
 import CreateParking from "./pages/Station/create";
 import { AlertProvider } from "./contexts/alertContext";
 import Stations from "./pages/Station/stations";
+import MapSearch from "./Components/Maps/MapSearch";
 function App() {
   return (
     <AuthProvider>
@@ -33,6 +34,7 @@ function App() {
             <Route path="/admin/dashboard" element={<ProtectedRoute element={Dashboard} />} />
             <Route path="/admin/stations/" element={<ProtectedRoute element={Stations} />} />
             <Route path="/admin/stations/create" element={<ProtectedRoute element={CreateParking} />} />
+            <Route path="/admin/stations/view" element={<ProtectedRoute element={MapSearch} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
