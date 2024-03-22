@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import { getstations } from '../../apis/api'
 import { AuthContext } from '../../contexts/authContext'
+import MapView from '../../Components/Maps/MapContainer'
 function Stations() {
   const { user } = useContext(AuthContext)
   const [stations, setStations] = useState([])
@@ -24,6 +25,9 @@ function Stations() {
       <div className='flex items-center justify-between'>
         <h1 className='text-2xl font-bold'>Stations</h1>
         <button className='bg-blue-500 text-white p-2 rounded'>Add Station</button>
+      </div>
+      <div >
+        <MapView />
       </div>
       <div className='mt-4'>
         <table className='w-full'>
@@ -53,7 +57,10 @@ function Stations() {
             })}
           </tbody>
         </table>
+
       </div>
+
+
     </div>
   )
 }
