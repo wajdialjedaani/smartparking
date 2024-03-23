@@ -15,10 +15,12 @@ function CreateParking() {
   })
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
+    console.log(name, value, type, files)
     setStation({
       ...station,
       [name]: type === 'file' ? files[0] : value,
     })
+    console.log(station)
   }
   const handleSubmit = async () => {
     const formData = new FormData()
@@ -28,6 +30,7 @@ function CreateParking() {
     formData.append('orgName', station.orgName)
 
     formData.append('file', station.image)
+    console.log("formdata", station.image)
     const response = await createstation(formData, user.token)
     console.log("fff", formData, response)
     if (response && !response.success) {
@@ -44,7 +47,8 @@ function CreateParking() {
     <div className='flex p-10'>
       <div className='basis-1/2'>
         <div className='bg-gray-200 w-60 h-60 p-4 border border-dashed-2 flex items-center'>
-          <input type="file" onChange={handleChange} />
+          <img src={station.file ? URL.createObjectURL(station.file) : '/Assests/parking/placeholder.png'} alt='station' className='w-full h-full object-cover' />
+          <input name="file" type="file" onChange={handleChange} />
         </div>
       </div>
       <div className='w-full flex flex-col gap-4'>

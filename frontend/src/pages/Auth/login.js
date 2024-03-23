@@ -40,8 +40,8 @@ function Login() {
   }, [user]);
 
   return (
-    <div className=" h-screen flex bg-[#4EA2F0] justify-around ">
-      <div className=" w-[500px] h-[608px] my-auto text-[96px] text-[#FFFFFF] font-sans ">
+    <div className=" h-screen flex bg-[#F9ED32] justify-around ">
+      <div className=" w-[500px] h-[608px] my-auto text-[96px] text-[#000000] font-sans ">
         <h1>WELCOME</h1>
         <h1>TO</h1>
         <h1>SMART</h1>
@@ -70,7 +70,7 @@ function Login() {
           <div className="flex justify-around  p-5 text-2xl font-sans text-slate-50">
             <Button
               buttonname="Submit"
-              btnstyle="bg-[#4EA2F0]   p-2 rounded-md hover:bg-gray-600"
+              btnstyle="bg-[#F9ED32]   p-2 rounded-md hover:bg-gray-600"
               onClick={handleSubmit}
 
             />

@@ -35,14 +35,14 @@ function Feedback() {
             />
             <textarea
               placeholder="Comments"
-              rows = "7"
+              rows="7"
               className="border-collapse border border-slate-200 text-center resize-none h-[90px] bg-[#D9D9D9] rounded-[10px]"
             ></textarea>
 
           </div>
           <div className="flex justify-around  p-5 text-2xl font-sans text-slate-50">
             <Button buttonname="Cancel" btnstyle=" bg-gray-900 p-2 rounded-md hover:bg-gray-600" />
-            <a href="feedmsg"><Button buttonname="Submit" btnstyle="bg-[#4EA2F0]   p-2 rounded-md hover:bg-gray-600" /></a>
+            <a href="feedmsg"><Button buttonname="Submit" btnstyle="bg-[#F9ED32]   p-2 rounded-md hover:bg-gray-600 text-gray-900" /></a>
 
           </div>
         </div>

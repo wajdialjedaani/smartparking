@@ -10,13 +10,13 @@ function NavBar(props) {
   };
 
   return (
-    <div className="bg-[#4EA2F0] flex justify-between mx-5 mt-3 rounded-2xl">
+    <div className="bg-[#F9ED32] flex justify-between mx-5 mt-3 rounded-2xl">
       <div className="flex items-center">
-        <div className="h-12 w-12 m-1 rounded-md">
-          <Logo imglink={props.img} />
+        <div className="h-12 w-12 m-1 rounded-md bg-transparent">
+          <img src={'/Assests/logo.jpg'} />
         </div>
       </div>
-      <div className="flex space-x-10 items-center p-5 text-2xl font-sans text-slate-50">
+      <div className="flex space-x-10 items-center p-5 text-2xl font-sans text-gray-900">
         <a href="/" className="hover:bg-gray-600 p-2 rounded-md">
           {navigationItems.item1}
         </a>
@@ -26,7 +26,7 @@ function NavBar(props) {
         <a href="login">
           <Button
             buttonname={navigationItems.btnname}
-            btnstyle="bg-gray-900 p-2 rounded-md hover:bg-gray-600"
+            btnstyle="bg-gray-900 p-2 rounded-md hover:bg-gray-600 text-white"
           />
         </a>
       </div>
