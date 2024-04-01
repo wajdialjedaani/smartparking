@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "../../Components/Nav";
-import Card from "../../Components/Card";
+import NavBar from "../../../Components/Nav";
+import Card from "../../../Components/Card";
 function Parkingdetails() {
   return (
     <div className="  ">

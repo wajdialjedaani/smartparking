@@ -11,16 +11,22 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-const MapView = () => {
+const MapView = ({ handleSearchSelect }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [markerPosition, setMarkerPosition] = useState(null);
   const [userLocation, setUserLocation] = useState([0, 0]);
+  const [searchResult, setSearchResult] = useState(null);
 
-  const handleSearchSelect = (item) => {
+  const handleSearch = (item) => {
     console.log(item)
     const { lat, lon } = item;
+    setSearchResult(item)
     setMarkerPosition([lat, lon]);
     setUserLocation([lat, lon]);
+    if (handleSearchSelect) {
+      handleSearchSelect(item)
+    }
+
   }
   useEffect(() => {
     if (navigator.geolocation) {
@@ -46,29 +52,27 @@ const MapView = () => {
     return null;
   };
 
-  return (
-    <div className='flex '>
-      <div className='w-full'>
 
-        <MapContainer center={userLocation} zoom={13} scrollWheelZoom={true} style={{ width: "100%", height: "50vh" }}>
-          <ChangeMapView center={userLocation} />
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {markerPosition && (
-            <Marker position={markerPosition} >
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          )}
-        </MapContainer>
+  return (
+    <div className='relative'>
+      <MapContainer center={userLocation} zoom={13} scrollWheelZoom={true} style={{ width: "100%", height: "50vh" }}>
+        <ChangeMapView center={userLocation} />
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {markerPosition && (
+          <Marker position={markerPosition} >
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        )}
+      </MapContainer>
+      <div className=' absolute top-1 left-20' style={{ zIndex: 99999 }} >
+        <SearchBox handleSearchSelect={handleSearch} searchResult={searchResult} />
       </div>
-      <div className='w-full'>
-        <SearchBox handleSearchSelect={handleSearchSelect} />
-      </div>
-    </div>
+    </div >
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthContext } from "../contexts/authContext";
+import { AuthContext } from "../../contexts/authContext";
 function Dashboard() {
   const { user, logout } = React.useContext(AuthContext);
   const parkings = [
@@ -25,7 +25,7 @@ function Dashboard() {
     },
   ]
   return (
-    <div className="flex flex-wrap justify-between">
+    <div className="flex flex-wrap justify-between p-2 ">
       {parkings.map((parking) => {
         return (
           <div className="basis-1/2 h-[300px] border items-center flex justify-center cursor-pointer">

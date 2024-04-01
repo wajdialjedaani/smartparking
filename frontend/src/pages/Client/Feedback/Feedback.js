@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from '../../Components/Nav'
-import Button from "../../Components/Button";
+import NavBar from "../../../Components/Nav";
+import Button from "../../../Components/From/Button";
 function Feedback() {
   return (
     <div className=" h-screen ">
@@ -41,7 +41,9 @@ function Feedback() {
 
           </div>
           <div className="flex justify-around  p-5 text-2xl font-sans text-slate-50">
-            <Button buttonname="Cancel" btnstyle=" bg-gray-900 p-2 rounded-md hover:bg-gray-600" />
+            <Button color="primary">
+              Cancel
+            </Button>
             <a href="feedmsg"><Button buttonname="Submit" btnstyle="bg-[#F9ED32]   p-2 rounded-md hover:bg-gray-600 text-gray-900" /></a>
 
           </div>

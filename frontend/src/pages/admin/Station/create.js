@@ -1,12 +1,15 @@
 import React from 'react'
 import { useState } from 'react'
-import { createstation } from '../../apis/api'
+import { createstation } from '../../../apis/api'
 import { useContext } from 'react'
-import { AuthContext } from '../../contexts/authContext'
-import { AlertContext } from '../../contexts/alertContext'
+import { AuthContext } from '../../../contexts/authContext'
+import { AlertContext } from '../../../contexts/alertContext'
+import BasicModal from '../../../Components/Modals/BasisModal'
+import MapView from '../../../Components/Maps/MapContainer'
 function CreateParking() {
   const { user } = useContext(AuthContext)
   const { showAlert } = useContext(AlertContext)
+  const [showModal, setShowModal] = useState(false)
   const [station, setStation] = useState({
     name: '',
     location: '',
@@ -22,6 +25,13 @@ function CreateParking() {
     })
     console.log(station)
   }
+  const setLocation = (address) => {
+    setStation({
+      ...station,
+      location: address
+    })
+    console.log(address)
+  }
   const handleSubmit = async () => {
     const formData = new FormData()
     formData.append('name', station.name)
@@ -30,9 +40,7 @@ function CreateParking() {
     formData.append('orgName', station.orgName)
 
     formData.append('file', station.image)
-    console.log("formdata", station.image)
     const response = await createstation(formData, user.token)
-    console.log("fff", formData, response)
     if (response && !response.success) {
       if (response.errors && response.errors.length > 0) {
         response.errors.forEach(error => {
@@ -62,7 +70,7 @@ function CreateParking() {
         </div>
         <div className='flex items-center'>
           <label className='basis-1/3'>Station Location</label>
-          <input type="text" name="location" onChange={handleChange} className='border border-blue-200 p-2 rounded w-full' />
+          <input type="text" name="location" value={station?.location?.display_name} onFocus={() => { setShowModal(true) }} className='border border-blue-200 p-2 rounded w-full' />
         </div>
         <div className='flex items-center'>
           <label className='basis-1/3'>Station Capacity</label>
@@ -75,6 +83,13 @@ function CreateParking() {
         </div>
 
       </div>
+      <div>
+      </div>
+      {showModal && <BasicModal cancleModal={() => { setShowModal(false) }}>
+        <MapView handleSearchSelect={(address) => { setLocation(address) }} />
+
+      </BasicModal>
+      }
     </div>
   )
 }

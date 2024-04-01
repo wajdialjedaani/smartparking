@@ -1,85 +1,90 @@
-import React, { useState } from "react";
-
+import React, { useCallback, useEffect, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import "./SearchBox.css"; // Import CSS file for styling
 
 const NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search?";
-const params = {
-  q: "",
-  format: "json",
-  addressdetails: "addressdetails",
-};
 
-export default function SearchBox({ handleSearchSelect }) {
+export default function SearchBox({ handleSearchSelect, searchResult }) {
   const [searchText, setSearchText] = useState("");
   const [listPlace, setListPlace] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const setInitials = () => {
+    console.log(searchResult, "kjshfkjshfkjs")
+    setSearchText(searchResult ? searchResult.display_name : "");
+    setListPlace([]);
+    setIsLoaded(false);
+  };
+  useEffect(() => {
+    setInitials()
+  }, [searchResult])
+  const searchAddress = useCallback(() => {
+    setIsLoaded(true);
+
+    const params = {
+      q: searchText,
+      format: "json",
+      addressdetails: 1,
+      polygon_geojson: 0,
+    };
+    const queryString = new URLSearchParams(params).toString();
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+
+    fetch(`${NOMINATIM_BASE_URL}${queryString}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setListPlace(result);
+        setIsLoaded(false);
+      })
+      .catch((err) => {
+        setIsLoaded(false);
+        console.error("Error fetching data:", err);
+      });
+  }, [searchText]);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }} className="border w-full">
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: 1 }}>
-          <input
-            className="border p-2 m-2"
-            value={searchText}
-            onChange={(event) => {
-              setSearchText(event.target.value);
-            }}
-          />
-        </div>
-        <div
-          style={{ display: "flex", alignItems: "center", padding: "0px 20px" }}
-        >
-          <button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              // Search
-              const params = {
-                q: searchText,
-                format: "json",
-                addressdetails: 1,
-                polygon_geojson: 0,
-              };
-              const queryString = new URLSearchParams(params).toString();
-              const requestOptions = {
-                method: "GET",
-                redirect: "follow",
-              };
-              fetch(`${NOMINATIM_BASE_URL}${queryString}`, requestOptions)
-                .then((response) => response.text())
-                .then((result) => {
-                  console.log(JSON.parse(result));
-                  setListPlace(JSON.parse(result));
-                })
-                .catch((err) => console.log("err: ", err));
-            }}
-          >
-            Search
-          </button>
-        </div>
+    <div className="search-box-container">
+      <div className="search-input-container">
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Search for a place..."
+          value={searchText}
+          onChange={(event) => setSearchText(event.target.value)}
+        />
+        <button onClick={searchAddress} className="search-button">
+          Search
+        </button>
       </div>
-      <div>
-        <ul aria-label="main mailbox folders">
-          {listPlace.map((item) => {
-            return (
-              <div key={item?.place_id} className="border m-2 flex items-center p-1">
-                <li
-                  button
+      <div className="search-results-container">
+        {isLoaded ? (
+          <div className="loading-spinner">
+            <CircularProgress />
+          </div>
+        ) : (
+          <ul className="search-results-list">
+            {listPlace.map((item) => (
+              <li key={item?.place_id} className="search-result-item">
+                <button
                   onClick={() => {
                     handleSearchSelect(item);
+                    setInitials()
                   }}
-                  className="flex gap-4 items-center"
+                  className="search-result-button"
                 >
                   <img
                     src="/Assests/location-pin.png"
-                    alt="Placeholder"
-                    style={{ width: 38, height: 38 }}
+                    alt="Location Pin"
+                    className="location-pin-image"
                   />
-                  <div>{item?.display_name}</div>
-                </li>
-                <br />
-              </div>
-            );
-          })}
-        </ul>
+                  <span className="location-name">{item?.display_name}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

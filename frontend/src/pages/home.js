@@ -17,16 +17,16 @@ function Home() {
         <div className="flex justify-evenly ">
           <div className=" ">
             <Card
-              cardimglink="/Assests/d.png"
+              cardimglink="/Assests/parking/disabled.png"
               cardname="Disabled Parking"
-              hreflink="dparking"
+              hreflink="parking-stations/handicapped-parking"
               cbtnstyle="hidden"
               cnamestyle="text-center m-5 text-2xl font-bold hover:text-xl"
 
             />
 
             <Card
-              cardimglink="/Assests/e.png"
+              cardimglink="/Assests/parking/ev.png"
               cardname="EV Parking"
               hreflink="eparking"
               cbtnstyle="hidden"
@@ -36,7 +36,7 @@ function Home() {
           </div>
           <div className=" ">
             <Card
-              cardimglink="/Assests/c.png"
+              cardimglink="/Assests/parking/car.png"
               cardname="Car Parking"
               hreflink="cparking"
               cbtnstyle="hidden"
@@ -44,7 +44,7 @@ function Home() {
             />
 
             <Card
-              cardimglink="/Assests/b.png"
+              cardimglink="/Assests/parking/bicycle.png"
               cardname="Bicycle Parking"
               hreflink="bparking"
               cbtnstyle="hidden"

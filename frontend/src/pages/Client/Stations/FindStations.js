@@ -1,6 +1,12 @@
 import React from "react";
-import NavBar from "../../Components/Nav";
-function Evparking() {
+import NavBar from "../../../Components/Nav";
+import { useParams } from 'react-router-dom';
+
+
+function FindStations() {
+  const { id } = useParams();
+  console.log(id);
+
   return (
     <div className=" h-screen ">
       <div>
@@ -44,4 +50,4 @@ function Evparking() {
     </div>
   );
 }
-export default Evparking;
+export default FindStations;

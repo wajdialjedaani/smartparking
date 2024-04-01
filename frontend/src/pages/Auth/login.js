@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import Button from "../../Components/Button";
+import Button from "../../Components/From/Button";
 import { signin } from "../../apis/api";
 import { useState } from "react";
 import { AuthContext } from '../../contexts/authContext';
@@ -69,11 +69,11 @@ function Login() {
           </div>
           <div className="flex justify-around  p-5 text-2xl font-sans text-slate-50">
             <Button
-              buttonname="Submit"
-              btnstyle="bg-[#F9ED32]   p-2 rounded-md hover:bg-gray-600"
               onClick={handleSubmit}
-
-            />
+              color="primary"
+            >
+              Login
+            </Button>
           </div>
 
           <div className="flex justify-center">

@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 function Card(props) {
   return (
-    <div className="bg-[#82C1EE] h-[260px] w-[450px] rounded-[12px]   p-10 my-[40px] ">
+    <div className="bg-[#F9ED32] h-[260px] w-[450px] rounded-[12px]   p-10 my-[40px] ">
       <Logo style="w-24 mx-auto hover:none" imglink={props.cardimglink} />
       <div className={props.cardintdivstyle}>
         <a href={props.hreflink}>

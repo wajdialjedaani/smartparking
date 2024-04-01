@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react'
-import { getstations } from '../../apis/api'
-import { AuthContext } from '../../contexts/authContext'
-import MapView from '../../Components/Maps/MapContainer'
+import { getstations } from '../../../apis/api'
+import { AuthContext } from '../../../contexts/authContext'
+import MapView from '../../../Components/Maps/MapContainer'
+import Button from '../../../Components/From/Button'
 function Stations() {
   const { user } = useContext(AuthContext)
   const [stations, setStations] = useState([])
@@ -26,7 +27,7 @@ function Stations() {
         <h1 className='text-2xl font-bold'>Stations</h1>
         <button className='bg-blue-500 text-white p-2 rounded'>Add Station</button>
       </div>
-      <div >
+      <div className='px-10 py-2'>
         <MapView />
       </div>
       <div className='mt-4'>
@@ -45,12 +46,12 @@ function Stations() {
               return (
                 <tr key={station._id}>
                   <td className='text-center'>{station.name}</td>
-                  <td className='text-center'>{station.location}</td>
+                  <td className='text-center'>{station.location?.stringaddress}</td>
                   <td className='text-center'>{station.capacity}</td>
                   <td className='text-center'>{station.orgName}</td>
                   <td className='flex gap-4 justify-center'>
-                    <button className='bg-green-500 text-white p-2 rounded'>Edit</button>
-                    <button className='bg-red-500 text-white p-2 rounded'>Delete</button>
+                    <Button color='primary'>Edit</Button>
+                    <Button color='primary'>Delete</Button>
                   </td>
                 </tr>
               )

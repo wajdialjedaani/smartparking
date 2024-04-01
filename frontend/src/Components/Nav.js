@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import Button from "./From/Button";
 import Logo from "./Logo";
 
 function NavBar(props) {
@@ -23,11 +23,12 @@ function NavBar(props) {
         <a href="feedback" className="hover:bg-gray-600 p-2 rounded-md">
           {navigationItems.item2}
         </a>
-        <a href="login">
-          <Button
-            buttonname={navigationItems.btnname}
-            btnstyle="bg-gray-900 p-2 rounded-md hover:bg-gray-600 text-white"
-          />
+        <a href="/login">
+          <button
+            className="bg-white  p-2 shadow rounded hover:bg-gray-600 text-gray-900"
+          >
+            login
+          </button>
         </a>
       </div>
     </div>
