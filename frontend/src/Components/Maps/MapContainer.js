@@ -11,7 +11,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-const MapView = ({ handleSearchSelect }) => {
+const MapView = ({ handleSearchSelect, markers }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [markerPosition, setMarkerPosition] = useState(null);
   const [userLocation, setUserLocation] = useState([0, 0]);
@@ -68,6 +68,13 @@ const MapView = ({ handleSearchSelect }) => {
             </Popup>
           </Marker>
         )}
+        {markers?.map((marker, index) => (
+          <Marker key={index} position={marker.position} icon={L.icon({ iconUrl: marker.MarkerUrl, iconSize: [30, 40] })}>
+            <Popup>
+              {marker.name}
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
       <div className=' absolute top-1 left-20' style={{ zIndex: 99999 }} >
         <SearchBox handleSearchSelect={handleSearch} searchResult={searchResult} />

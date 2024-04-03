@@ -57,9 +57,24 @@ export const createparkingOption = (formData, token) => {
   return fetch(`${baseUrl}/common/stations/parkingoptions/create`, {
     method: 'post',
     headers: {
+      'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     },
-    body: formData
+    body: JSON.stringify(formData)
+  })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log(err))
+}
+export const editparkingOption = (formData, id, token) => {
+  console.log("im clledddddd", formData)
+  return fetch(`${baseUrl}/common/stations/parkingoptions/${id}`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(formData)
   })
     .then(response => response.json())
     .then(data => data)

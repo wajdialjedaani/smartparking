@@ -6,19 +6,6 @@ const getRoutes = require('./get'); // Import get routes
 const parkingOptionsRoutes = require('./parkingOptions'); // Import parkingOptions routes
 
 
-// Custom validation function to check if location object has all required properties
-const validateLocation = (value) => {
-  if (!value || typeof value !== 'object') {
-    throw new Error('Location must be an object');
-  }
-  const requiredProperties = ['postalCode', 'countryCode', 'country', 'county', 'lat', 'lng', 'city', 'state', 'road'];
-  for (const prop of requiredProperties) {
-    if (!(prop in value)) {
-      throw new Error(`Location object missing property: ${prop}`);
-    }
-  }
-  return true;
-};
 
 router.post('/create',
   processFile.processSingleFileOptionalMiddleware,
@@ -27,7 +14,14 @@ router.post('/create',
     check('capacity').isNumeric(),
     check('orgName').isLength({ min: 5 }),
     // Custom validation for location property
-    check('location').custom(validateLocation)
+    check('stringaddress').isLength({ min: 5 }),
+    check('lat').isNumeric(),
+    check('lng').isNumeric,
+    check('country').isLength({ min: 5 }),
+    check('country_code').isLength({ min: 2 }),
+    check('postalCode').isLength({ min: 5 }),
+    check('city').isLength({ min: 3 }),
+    check('state').isLength({ min: 3 }),
   ],
   (req, res, next) => {
     const errors = validationResult(req);

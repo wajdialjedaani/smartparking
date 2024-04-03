@@ -5,7 +5,6 @@ const responseHandler = require('@helpers/responseHandler');
 module.exports = async (req, res) => {
   try {
     const { stationId } = req.query
-    console.log('stationId', stationId)
     const station = await Stations.findById(stationId)
     if (!station) return responseHandler.handleErrorResponse(res, 404, 'Station not found');
     const parkingOptions = await ParkingOptions.find({ stationId: stationId })

@@ -26,21 +26,43 @@ function CreateParking() {
     console.log(station)
   }
   const setLocation = (address) => {
+    console.log("address", address)
+    const newAddress = {
+      postalCode: address.address.postcode,
+      city: address.address.city,
+      country: address.address.country,
+      country_code: address.address.country_code,
+      stringaddress: address.display_name,
+      state: address.address.state,
+      road: address.address.road,
+      lat: address.lat,
+      lng: address.lon
+    }
     setStation({
       ...station,
-      location: address
+      location: newAddress
     })
-    console.log(address)
+    console.log("nnnnnnnn", newAddress)
   }
   const handleSubmit = async () => {
     const formData = new FormData()
     formData.append('name', station.name)
-    formData.append('location', station.location)
+    formData.append('stringaddress', station.location.stringaddress)
+    formData.append('lat', station.location.lat)
+    formData.append('lng', station.location.lng)
+    formData.append('city', station.location.city)
+    formData.append('state', station.location.state)
+    formData.append('country', station.location.country)
+    formData.append('country_code', station.location.country_code)
+    formData.append('road', station.location.road)
+    formData.append('postalCode', station.location.postalCode)
     formData.append('capacity', station.capacity)
     formData.append('orgName', station.orgName)
 
     formData.append('file', station.image)
+    console.log("s====", station)
     const response = await createstation(formData, user.token)
+    console.log("ppp", response)
     if (response && !response.success) {
       if (response.errors && response.errors.length > 0) {
         response.errors.forEach(error => {
@@ -70,7 +92,7 @@ function CreateParking() {
         </div>
         <div className='flex items-center'>
           <label className='basis-1/3'>Station Location</label>
-          <input type="text" name="location" value={station?.location?.display_name} onFocus={() => { setShowModal(true) }} className='border border-blue-200 p-2 rounded w-full' />
+          <input type="text" name="location" value={station?.location?.stringaddress} onFocus={() => { setShowModal(true) }} className='border border-blue-200 p-2 rounded w-full' />
         </div>
         <div className='flex items-center'>
           <label className='basis-1/3'>Station Capacity</label>
@@ -85,7 +107,7 @@ function CreateParking() {
       </div>
       <div>
       </div>
-      {showModal && <BasicModal cancleModal={() => { setShowModal(false) }}>
+      {showModal && <BasicModal cancleModal={() => { setShowModal(false) }} submitModal={() => { setShowModal(false) }}>
         <MapView handleSearchSelect={(address) => { setLocation(address) }} />
 
       </BasicModal>

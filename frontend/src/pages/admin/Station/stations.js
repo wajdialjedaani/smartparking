@@ -7,12 +7,22 @@ import Button from '../../../Components/From/Button'
 function Stations() {
   const { user } = useContext(AuthContext)
   const [stations, setStations] = useState([])
+  const [markers, setMarkers] = useState([])
   const fetchData = async () => {
     try {
       const data = await getstations(user.token);
       console.log(data);
       if (data.success) {
         setStations(data.data);
+        const markers = data.data.map(station => {
+          return {
+            position: [station.location.lat, station.location.lng],
+            name: station.name,
+            MarkerUrl: '/Assests/markers/disabled.png'
+          }
+        })
+        console.log(markers, ',------------------->');
+        setMarkers(markers);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -28,7 +38,7 @@ function Stations() {
         <button className='bg-blue-500 text-white p-2 rounded'>Add Station</button>
       </div>
       <div className='px-10 py-2'>
-        <MapView />
+        <MapView markers={markers} />
       </div>
       <div className='mt-4'>
         <table className='w-full'>

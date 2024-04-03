@@ -5,10 +5,21 @@ const { storeImage } = require('@helpers/utils')
 
 const create = async (req, res) => {
   try {
-    const { name, location, description, orgName, capacity } = req.body;
+    const { name, stringaddress, state, city, country, country_code, lat, lng, postalCode, description, orgName, capacity } = req.body;
+    console.log("pppppp=", req.body)
     const stationObj = {
       name,
-      location,
+      location: {
+        stringaddress,
+        state,
+        city,
+        country,
+        countryCode: country_code,
+        lat,
+        lng,
+        postalCode
+
+      },
       description,
       orgName,
       capacity
