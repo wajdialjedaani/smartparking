@@ -39,6 +39,7 @@ export const getstationbyid = (id, token) => {
 
 
 export const createstation = (formData, token) => {
+  console.log("formdata>>>>>>>>>>>", formData)
   return fetch(`${baseUrl}/common/stations/create`, {
     method: 'post',
     headers: {
@@ -47,7 +48,7 @@ export const createstation = (formData, token) => {
     body: formData
   })
     .then(response => response.json())
-    .then(data => data)
+    .then(data => { console.log("======>", data); return data })
     .catch(err => console.log(err))
 }
 

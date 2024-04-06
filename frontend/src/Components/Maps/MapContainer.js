@@ -34,6 +34,7 @@ const MapView = ({ handleSearchSelect, markers }) => {
         (position) => {
           const { latitude, longitude } = position.coords;
           setUserLocation([latitude, longitude]);
+          console.log("userLocation", [latitude, longitude])
           setMarkerPosition([latitude, longitude]);
         },
         (error) => {

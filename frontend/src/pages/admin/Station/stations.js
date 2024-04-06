@@ -16,7 +16,7 @@ function Stations() {
         setStations(data.data);
         const markers = data.data.map(station => {
           return {
-            position: [station.location.lat, station.location.lng],
+            position: [station?.location?.coordinates[1], station?.location?.coordinates[0]],
             name: station.name,
             MarkerUrl: '/Assests/markers/disabled.png'
           }
