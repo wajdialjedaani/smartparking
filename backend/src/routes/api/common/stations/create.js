@@ -6,7 +6,6 @@ const { storeImage } = require('@helpers/utils')
 const create = async (req, res) => {
   try {
     const { name, stringaddress, state, city, country, country_code, lat, lng, postalCode, description, orgName, capacity } = req.body;
-    console.log("pppppp=", req.body)
     const stationObj = {
       name,
       location: {
@@ -15,18 +14,17 @@ const create = async (req, res) => {
         city,
         country,
         countryCode: country_code,
-        lat,
-        lng,
+        coordinates: [parseFloat(lng), parseFloat(lat)], // Ensure coordinates are parsed as floats
         postalCode
-
       },
       description,
       orgName,
       capacity
-    }
+    };
+    console.log('stationObj', stationObj);
     if (req.file) {
-      const imageURL = await storeImage('uploads/stations/', req.file)
-      stationObj['stationImg'] = imageURL
+      const imageURL = await storeImage('uploads/stations/', req.file);
+      stationObj['stationImg'] = imageURL;
     }
     const station = new Stations(stationObj);
 

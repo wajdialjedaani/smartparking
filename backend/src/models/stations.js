@@ -22,13 +22,10 @@ const locationSchema = new Schema({
     type: String,
     required: false
   },
-  lat: {
-    type: Number,
-    required: true
-  },
-  lng: {
-    type: Number,
-    required: true
+  coordinates: {
+    type: [Number], // [longitude, latitude]
+    required: true,
+    index: '2dsphere' // Define 2dsphere index directly in the schema
   },
   city: {
     type: String,
@@ -40,7 +37,7 @@ const locationSchema = new Schema({
   },
   road: {
     type: String,
-    required: true
+    required: false
   }
 });
 
@@ -49,10 +46,7 @@ const stationSchema = new Schema({
     type: String,
     required: true
   },
-  location: {
-    type: locationSchema,
-    required: true
-  },
+  location: locationSchema, // Use the modified locationSchema
   capacity: {
     type: String,
     required: false

@@ -29,5 +29,40 @@ const getById = async (req, res) => {
     return responseHandler.handleErrorResponse(res, 500, error.message);
   }
 }
+
+const getStationByRadius = async (req, res) => {
+  try {
+    const { lat, lng, radius } = req.query;
+
+    // Convert radius to meters (if it's in kilometers)
+    const radiusInMeters = parseFloat(radius) * 1000;
+
+    // Perform the aggregation pipeline using $geoNear
+    const stations = await Stations.aggregate([
+      {
+        $geoNear: {
+          near: {
+            type: "Point",
+            coordinates: [parseFloat(lng), parseFloat(lat)] // User coordinates
+          },
+          distanceField: "distance",
+          maxDistance: radiusInMeters,
+          spherical: true
+        }
+      }
+    ]);
+    if (stations && stations.length > 0) {
+      return responseHandler.handleSuccessObject(res, stations);
+    }
+    return responseHandler.handleErrorResponse(res, 404, 'No stations found');
+  } catch (error) {
+    console.error(error);
+    return responseHandler.handleErrorResponse(res, 500, 'Internal Server Error');
+  }
+};
+
+
+
 exports.getById = getById;
 exports.get = get;
+exports.getStationByRadius = getStationByRadius;

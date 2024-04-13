@@ -18,7 +18,6 @@ const authenticateToken = (req, res, next) => {
   }
   try {
     const decode = jwt.verify(token, process.env.JWT_SECRET, { algorithm: 'HS256' })
-    console.log('decode', decode)
     req.user = decode.user;
     next();
   }

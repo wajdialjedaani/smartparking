@@ -60,7 +60,6 @@ function CreateParking() {
     formData.append('orgName', station.orgName)
 
     formData.append('file', station.image)
-    console.log("s====", station)
     const response = await createstation(formData, user.token)
     console.log("ppp", response)
     if (response && !response.success) {
