@@ -11,12 +11,11 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-const MapView = ({ handleSearchSelect, markers }) => {
+const MapView = ({ handleSearchSelect, markers, CurrStation = null }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [markerPosition, setMarkerPosition] = useState(null);
   const [userLocation, setUserLocation] = useState([0, 0]);
   const [searchResult, setSearchResult] = useState(null);
-
   const handleSearch = (item) => {
     console.log(item)
     const { lat, lon } = item;
@@ -52,7 +51,12 @@ const MapView = ({ handleSearchSelect, markers }) => {
     map.setView(center);
     return null;
   };
-
+  useEffect(() => {
+    if (CurrStation) {
+      console.log("CurrStation", CurrStation)
+      setUserLocation(CurrStation)
+    }
+  }, [CurrStation])
 
   return (
     <div className='relative'>
@@ -70,7 +74,7 @@ const MapView = ({ handleSearchSelect, markers }) => {
           </Marker>
         )}
         {markers?.map((marker, index) => (
-          <Marker key={index} position={marker.position} icon={L.icon({ iconUrl: marker.MarkerUrl, iconSize: [30, 40] })}>
+          <Marker key={index} position={marker.position} icon={L.icon({ iconUrl: marker.MarkerUrl, iconSize: [40, 40] })}>
             <Popup>
               {marker.name}
             </Popup>

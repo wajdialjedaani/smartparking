@@ -1,5 +1,6 @@
 
-const baseUrl = 'http://18.118.205.5:8080/api';
+// const baseUrl = 'http://localhost:8080/api';
+const baseUrl = 'http://18.118.205.5:8080/api'
 
 export const signin = (formData) => {
   return fetch(`${baseUrl}/auth/login/`, {
@@ -15,7 +16,7 @@ export const signin = (formData) => {
 }
 
 export const getstations = (token) => {
-  return fetch(`${baseUrl}/common/stations`, {
+  return fetch(`${baseUrl}/admin/stations`, {
     method: 'get',
     headers: {
       'Authorization': `Bearer ${token}`
@@ -26,7 +27,7 @@ export const getstations = (token) => {
     .catch(err => console.log(err))
 }
 export const getstationbyid = (id, token) => {
-  return fetch(`${baseUrl}/common/stations/${id}`, {
+  return fetch(`${baseUrl}/admin/stations/${id}`, {
     method: 'get',
     headers: {
       'Authorization': `Bearer ${token}`
@@ -40,7 +41,7 @@ export const getstationbyid = (id, token) => {
 
 export const createstation = (formData, token) => {
   console.log("formdata>>>>>>>>>>>", formData)
-  return fetch(`${baseUrl}/common/stations/create`, {
+  return fetch(`${baseUrl}/admin/stations/create`, {
     method: 'post',
     headers: {
       'Authorization': `Bearer ${token}`
@@ -55,7 +56,7 @@ export const createstation = (formData, token) => {
 //parking options
 
 export const createparkingOption = (formData, token) => {
-  return fetch(`${baseUrl}/common/stations/parkingoptions/create`, {
+  return fetch(`${baseUrl}/admin/stations/parkingoptions/create`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -68,12 +69,35 @@ export const createparkingOption = (formData, token) => {
     .catch(err => console.log(err))
 }
 export const editparkingOption = (formData, id, token) => {
-  console.log("im clledddddd", formData)
-  return fetch(`${baseUrl}/common/stations/parkingoptions/${id}`, {
+  return fetch(`${baseUrl}/admin/stations/parkingoptions/${id}`, {
     method: 'put',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(formData)
+  })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log(err))
+}
+
+// Common api routes
+
+export const getstationsclient = (query = '') => {
+  return fetch(`${baseUrl}/common/stations${query}`, {
+    method: 'get',
+  })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log(err))
+}
+
+export const usercreatefeedback = (formData) => {
+  return fetch(`${baseUrl}/common/feedback/create`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(formData)
   })

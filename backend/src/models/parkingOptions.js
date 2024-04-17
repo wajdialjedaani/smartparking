@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const parkingOptionsSchema = new mongoose.Schema({
   stationId: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'Stations',
     required: true
   },
   type: {
@@ -20,3 +21,10 @@ const parkingOptionsSchema = new mongoose.Schema({
   }
 });
 mongoose.model('ParkingOptions', parkingOptionsSchema);
+
+// const parkingOptionsHmap = {
+//   1: "Car",
+//   2: "EV",
+//   3: "Bicycle",
+//   4: "Disabled"
+// }

@@ -1,30 +1,26 @@
 const mongoose = require('mongoose');
-const Feedback = mongoose.model('Feedback');
 const Stations = mongoose.model('Stations');
+const Feedback = mongoose.model('Feedback');
 const responseHandler = require('@helpers/responseHandler');
-module.exports = async (req, res) => {
+const create = async (req, res) => {
   try {
-    const { email, comment, stationId, rating } = req.body;
-    console.log(req.body, "req.body");
-    const station = await Stations
-      .findById(stationId)
-      .exec();
-    console.log(station, "jkjhkj");
-    if (!station) {
-      return responseHandler.handleErrorResponse(res, 404, 'Station not found');
+    const { email, stationId, rating, comments } = req.body;
+    console.log("rrrr===", req.body)
+    if (!email || !stationId || !rating) {
+      return responseHandler.handleErrorResponse(res, 400, 'Missing required fields');
     }
+
     const feedback = new Feedback({
       email,
-      comment,
       stationId,
       rating,
+      comments
     });
-    await feedback.save();
-    return responseHandler.handleSuccessResponse(res, 'Feedback submitted', 201);
-
-  }
-  catch (error) {
-    console.error(error);
-    return responseHandler.handleErrorResponse(res, 500, 'Internal server error');
+    const savedFeedback = await feedback.save();
+    return responseHandler.handleSuccessResponse(res, 200, 'Feedback submitted successfully');
+  } catch (error) {
+    console.log('unknow error', error);
+    return responseHandler.handleErrorResponse(res, 500, error.message);
   }
 }
+module.exports = create;

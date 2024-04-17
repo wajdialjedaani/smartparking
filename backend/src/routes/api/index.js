@@ -4,8 +4,9 @@ const responseHandler = require('@helpers/responseHandler');
 
 const router = express.Router();
 router.use('/auth', require('./auth'));
-router.use(authenticateToken);
 router.use('/common', require('./common'));
+router.use(authenticateToken);
+router.use('/admin', require('./admin'));
 // router.use('/admin', adminAuthenticateToken, require('./Admin'));
 
 // Catch-all route for undefined routes

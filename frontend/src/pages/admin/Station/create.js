@@ -42,7 +42,6 @@ function CreateParking() {
       ...station,
       location: newAddress
     })
-    console.log("nnnnnnnn", newAddress)
   }
   const handleSubmit = async () => {
     const formData = new FormData()
@@ -61,7 +60,6 @@ function CreateParking() {
 
     formData.append('file', station.image)
     const response = await createstation(formData, user.token)
-    console.log("ppp", response)
     if (response && !response.success) {
       if (response.errors && response.errors.length > 0) {
         response.errors.forEach(error => {

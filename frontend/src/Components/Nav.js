@@ -20,7 +20,7 @@ function NavBar(props) {
         <a href="/" className="hover:bg-gray-600 p-2 rounded-md">
           {navigationItems.item1}
         </a>
-        <a href="feedback" className="hover:bg-gray-600 p-2 rounded-md">
+        <a href="/feedback" className="hover:bg-gray-600 p-2 rounded-md">
           {navigationItems.item2}
         </a>
         <a href="/login">
