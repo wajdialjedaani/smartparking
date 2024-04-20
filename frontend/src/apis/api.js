@@ -12,7 +12,7 @@ export const signin = (formData) => {
   })
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log(err))
+    .catch(err => { console.log(err); return err })
 }
 
 export const getstations = (token) => {
@@ -24,7 +24,7 @@ export const getstations = (token) => {
   })
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log(err))
+    .catch(err => { console.log(err); return err })
 }
 export const getstationbyid = (id, token) => {
   return fetch(`${baseUrl}/admin/stations/${id}`, {
@@ -35,7 +35,7 @@ export const getstationbyid = (id, token) => {
   })
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log(err))
+    .catch(err => { console.log(err); return err })
 }
 
 
@@ -50,7 +50,7 @@ export const createstation = (formData, token) => {
   })
     .then(response => response.json())
     .then(data => { console.log("======>", data); return data })
-    .catch(err => console.log(err))
+    .catch(err => { console.log(err); return err })
 }
 
 //parking options
@@ -66,7 +66,7 @@ export const createparkingOption = (formData, token) => {
   })
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log(err))
+    .catch(err => { console.log(err); return err })
 }
 export const editparkingOption = (formData, id, token) => {
   return fetch(`${baseUrl}/admin/stations/parkingoptions/${id}`, {
@@ -79,7 +79,7 @@ export const editparkingOption = (formData, id, token) => {
   })
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log(err))
+    .catch(err => { console.log(err); return err })
 }
 
 export const getuserfeedback = (token) => {
@@ -91,7 +91,7 @@ export const getuserfeedback = (token) => {
   })
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log(err))
+    .catch(err => { console.log(err); return err })
 }
 
 
@@ -103,7 +103,7 @@ export const getstationsclient = (query = '') => {
   })
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log(err))
+    .catch(err => { console.log(err); return err })
 }
 
 export const getstationbyidclient = (id) => {
@@ -112,7 +112,7 @@ export const getstationbyidclient = (id) => {
   })
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log(err))
+    .catch(err => { console.log(err); return err })
 }
 
 export const usercreatefeedback = (formData) => {
@@ -125,5 +125,5 @@ export const usercreatefeedback = (formData) => {
   })
     .then(response => response.json())
     .then(data => data)
-    .catch(err => console.log(err))
+    .catch(err => { console.log(err); return err })
 }
