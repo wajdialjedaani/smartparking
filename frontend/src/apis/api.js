@@ -82,10 +82,32 @@ export const editparkingOption = (formData, id, token) => {
     .catch(err => console.log(err))
 }
 
+export const getuserfeedback = (token) => {
+  return fetch(`${baseUrl}/admin/feedback`, {
+    method: 'get',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log(err))
+}
+
+
 // Common api routes
 
 export const getstationsclient = (query = '') => {
   return fetch(`${baseUrl}/common/stations${query}`, {
+    method: 'get',
+  })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => console.log(err))
+}
+
+export const getstationbyidclient = (id) => {
+  return fetch(`${baseUrl}/common/stations/${id}`, {
     method: 'get',
   })
     .then(response => response.json())

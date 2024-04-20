@@ -5,7 +5,6 @@ import Logo from "./Logo";
 function NavBar(props) {
   const navigationItems = {
     item1: props.item1,
-    item2: props.item2,
     btnname: props.btnname
   };
 
@@ -19,9 +18,6 @@ function NavBar(props) {
       <div className="flex space-x-10 items-center p-5 text-2xl font-sans text-gray-900">
         <a href="/" className="hover:bg-gray-600 p-2 rounded-md">
           {navigationItems.item1}
-        </a>
-        <a href="/feedback" className="hover:bg-gray-600 p-2 rounded-md">
-          {navigationItems.item2}
         </a>
         <a href="/login">
           <button

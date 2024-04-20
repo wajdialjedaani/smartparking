@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "../../../Components/Nav";
 import Button from "../../../Components/From/Button";
 import { useState } from 'react';
-import { usercreatefeedback } from '../../../apis/api';
+import { usercreatefeedback, getstationbyidclient } from '../../../apis/api';
+import { useParams } from "react-router-dom";
 function Feedback() {
-  const [feedback, setFeedback] = useState({ email: "", stationId: "", rating: "", comments: "" })
+  const { id } = useParams();
+  const [station, setStation] = useState(null)
+  const [feedback, setFeedback] = useState({ email: "", stationId: "", rating: "", comment: "" })
   const handleFeedBackSubmit = async () => {
+    console.log(feedback, "<---------")
     const res = await usercreatefeedback(feedback);
     if (res && res.success) {
       console.log("Feedback submitted successfully")
@@ -18,13 +22,27 @@ function Feedback() {
     const { name, value } = e.target;
     setFeedback({ ...feedback, [name]: value })
   }
+  const handleStationFetch = async () => {
+    const res = await getstationbyidclient(id);
+    if (res && res.success) {
+      setStation(res.data)
+    }
+    else if (res && res.error) {
+      console.log(res.error)
+    }
+  }
+
+  useEffect(() => {
+    setFeedback({ ...feedback, stationId: id })
+    handleStationFetch();
+  }, [id])
+
   return (
     <div className=" h-screen ">
       <div>
         <NavBar
           img="/Assests/logo.png"
           item1="Home"
-          item2="Feedback"
           btnname="Admin"
         />
       </div>
@@ -48,7 +66,8 @@ function Feedback() {
               placeholder="Station Name"
               required
               name="stationId"
-              value={feedback.stationId}
+              value={station?.name}
+              disabled
               onChange={handleInputChange}
               className="border-collapse border border-slate-200 text-center h-[60px] bg-[#D9D9D9] rounded-[10px]"
             />
@@ -62,11 +81,11 @@ function Feedback() {
               className="border-collapse border border-slate-200 text-center h-[60px] bg-[#D9D9D9] rounded-[10px]"
             />
             <textarea
-              placeholder="Comments"
+              placeholder="Comment"
               rows="7"
               required
-              name="comments"
-              value={feedback.comments}
+              name="comment"
+              value={feedback.comment}
               onChange={handleInputChange}
               className="border-collapse border border-slate-200 text-center resize-none h-[90px] bg-[#D9D9D9] rounded-[10px]"
             ></textarea>

@@ -16,4 +16,5 @@ router.post('/',
     }
     next();
   }, require('./create'));
+router.get('/', require('./get'));
 module.exports = router;

@@ -19,4 +19,15 @@ const get = async (req, res) => {
     return responseHandler.handleErrorResponse(res, 500, error.message);
   }
 }
-module.exports = get;
+const getById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const station = await Stations.findById(id);
+    return responseHandler.handleSuccessObject(res, station);
+  } catch (error) {
+    console.log('unknow error', error);
+    return responseHandler.handleErrorResponse(res, 500, error.message);
+  }
+}
+exports.get = get;
+exports.getById = getById;

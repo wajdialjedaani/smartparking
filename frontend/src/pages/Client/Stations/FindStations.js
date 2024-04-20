@@ -4,8 +4,10 @@ import MapView from "../../../Components/Maps/MapContainer";
 import { useParams } from 'react-router-dom';
 import { getstationsclient } from '../../../apis/api';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 function FindStations() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [stations, setStations] = useState([])
   const [markers, setMarkers] = useState([])
   const [currentStation, setCurrentStation] = useState(null)
@@ -28,6 +30,9 @@ function FindStations() {
   const HandleCurrStation = (station) => {
     setCurrentStation(station.stationId)
   }
+  const handleViewStation = (id) => {
+    navigate(`/station/${id}`)
+  }
   useEffect(() => {
     if ((id in ParkingOptionHmap) && id !== undefined) {
       handleStationsfetch(`?type=${ParkingOptionHmap[id]}`)
@@ -36,6 +41,7 @@ function FindStations() {
       handleStationsfetch()
     }
   }, [])
+
   useEffect(() => {
     if (stations && stations.length > 0) {
       console.log("stations", stations)
@@ -48,7 +54,6 @@ function FindStations() {
           id: TempStation?._id
         }
       })
-      console.log("newMarkers", newMarkers)
       setMarkers(newMarkers)
     }
   }, [stations])
@@ -58,7 +63,6 @@ function FindStations() {
         <NavBar
           img="/Assests/logo.jpg"
           item1="Home"
-          item2="Feedback"
           btnname="Admin"
         />
       </div>
@@ -73,10 +77,10 @@ function FindStations() {
             <th className="px-5 py-2  border border-slate-600 ">SNO</th>
             <th className="px-10 py-2 border border-slate-600">Name</th>
             <th className="px-10 py-2 border border-slate-600">Location</th>
-            <th className="px-10 py-2 border border-slate-600">Capacity</th>
-            <th className="px-10 py-2 border border-slate-600">
-              Available Slots
-            </th>
+            <th className="px-10 py-2 border border-slate-600">Total Slots All Types</th>
+            <th className="px-10 py-2 border border-slate-600">{id} type capacity</th>
+            <th className="px-10 py-2 border border-slate-600">{id} Available Slots</th>
+            <th className="px-10 py-2 border border-slate-600">View Station</th>
           </tr>
         </thead>
         <tbody className="">
@@ -88,9 +92,11 @@ function FindStations() {
                   {station?.stationId?.name}
                 </button>
               </td>
-              <td className="px-10 py-2 border border-slate-600">unt</td>
-              <td className="px-10 py-2 border border-slate-600">100</td>
-              <td className="px-10 py-2 border border-slate-600">20</td>
+              <td className="px-10 py-2 border border-slate-600">{station?.stationId?.location?.stringaddress}</td>
+              <td className="px-10 py-2 border border-slate-600">{station?.stationId?.capacity}</td>
+              <td className="px-10 py-2 border border-slate-600">{station?.capacity}</td>
+              <td className="px-10 py-2 border border-slate-600">{station?.capacity - station?.occupied}</td>
+              <td className="px-10 py-2 border border-slate-600"><button className="bg-gray-900 text-white rounded shadow p-2" onClick={() => handleViewStation(station?.stationId?._id)}>View Station</button></td>
             </tr>
           })
           }

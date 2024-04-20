@@ -8,7 +8,6 @@ function Parkingdetails() {
         <NavBar
           img="/Assests/logo.jpg"
           item1="Home"
-          item2="Feedback"
           btnname="Admin"
         />
       </div>
