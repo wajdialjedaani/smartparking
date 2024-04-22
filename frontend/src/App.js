@@ -12,6 +12,7 @@ import CreateParking from "./pages/admin/Station/create";
 import { AlertProvider } from "./contexts/alertContext";
 import Stations from "./pages/admin/Station/stations";
 import StationsView from "./pages/admin/Station/view";
+import AdminStation from "./pages/admin/Station/station";
 import Station from "./pages/Client/Stations/station"
 import UserFeedback from "./pages/admin/Users/UserFeedback";
 function App() {
@@ -29,7 +30,7 @@ function App() {
             <Route path="/admin/stations/" element={<ProtectedRoute element={Stations} />} />
             <Route path="/admin/stations/create" element={<ProtectedRoute element={CreateParking} />} />
             <Route path="/admin/stations/view" element={<ProtectedRoute element={StationsView} />} />
-            <Route path="/admin/stations/:id" element={<ProtectedRoute element={Station} />} />
+            <Route path="/admin/stations/:id" element={<ProtectedRoute element={AdminStation} />} />
             <Route path="/admin/user-feedback" element={<ProtectedRoute element={UserFeedback} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

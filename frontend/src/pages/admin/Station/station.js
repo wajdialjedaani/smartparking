@@ -13,7 +13,7 @@ const parkingOptionsHmap = {
   3: "Bicycle",
   4: "Disabled"
 }
-function Station() {
+function AdminStation() {
   const { user } = useContext(AuthContext)
   const { id } = useParams()
   const [station, setStation] = useState(null)
@@ -196,4 +196,4 @@ function Station() {
   )
 }
 
-export default Station
+export default AdminStation
