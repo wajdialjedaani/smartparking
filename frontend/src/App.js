@@ -9,6 +9,7 @@ import ProtectedRoute from "./ProtectedRoutes";
 import { AuthProvider } from "./contexts/authContext";
 import NotFound from "./pages/NotFound";
 import CreateParking from "./pages/admin/Station/create";
+import EditParking from "./pages/admin/Station/edit";
 import { AlertProvider } from "./contexts/alertContext";
 import Stations from "./pages/admin/Station/stations";
 import StationsView from "./pages/admin/Station/view";
@@ -29,6 +30,8 @@ function App() {
             <Route path="/admin/dashboard" element={<ProtectedRoute element={Dashboard} />} />
             <Route path="/admin/stations/" element={<ProtectedRoute element={Stations} />} />
             <Route path="/admin/stations/create" element={<ProtectedRoute element={CreateParking} />} />
+            <Route path="/admin/stations/edit/:id" element={<ProtectedRoute element={EditParking} />} />
+
             <Route path="/admin/stations/view" element={<ProtectedRoute element={StationsView} />} />
             <Route path="/admin/stations/:id" element={<ProtectedRoute element={AdminStation} />} />
             <Route path="/admin/user-feedback" element={<ProtectedRoute element={UserFeedback} />} />

@@ -1,6 +1,6 @@
 
 // const baseUrl = 'http://localhost:8080/api';
-const baseUrl = 'http://18.118.205.5:8080/api'
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export const signin = (formData) => {
   return fetch(`${baseUrl}/auth/login/`, {
@@ -40,7 +40,6 @@ export const getstationbyid = (id, token) => {
 
 
 export const createstation = (formData, token) => {
-  console.log("formdata>>>>>>>>>>>", formData)
   return fetch(`${baseUrl}/admin/stations/create`, {
     method: 'post',
     headers: {
@@ -53,6 +52,32 @@ export const createstation = (formData, token) => {
     .catch(err => { console.log(err); return err })
 }
 
+export const editstation = (formData, id, token) => {
+  return fetch(`${baseUrl}/admin/stations/${id}`, {
+    method: 'post',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+
+    },
+    body: formData
+  })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => { console.log(err); return err })
+}
+
+
+export const deletestation = (id, token) => {
+  return fetch(`${baseUrl}/admin/stations/${id}`, {
+    method: 'delete',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(response => response.json())
+    .then(data => data)
+    .catch(err => { console.log(err); return err })
+}
 //parking options
 
 export const createparkingOption = (formData, token) => {

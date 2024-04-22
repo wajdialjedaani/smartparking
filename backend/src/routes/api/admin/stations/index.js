@@ -37,5 +37,6 @@ router.get('/', getRoutes.get); // Handle GET request to '/'
 router.use('/parkingoptions', parkingOptionsRoutes); // Delegate requests starting with '/parkingoptions' to the parkingOptions routes
 router.get('/radius', getRoutes.getStationByRadius); // Handle GET request to '/radius
 router.get('/:id', getRoutes.getById); // Handle GET request to '/:id'
-
+router.delete('/:id', require('./delete')); // Handle DELETE request to '/:id'
+router.post('/:id', processFile.processSingleFileOptionalMiddleware, require('./edit')); // Handle POST request to '/:id
 module.exports = router;

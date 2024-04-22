@@ -87,56 +87,59 @@ function AdminStation() {
   return (
     <div className='p-4 '>
       {station ? (
-        <div className='flex flex-col gap-4'>
-          <h1 className='text-3xl font-bold'>{station.name}</h1>
-          <div className='basis-1/3 flex flex-col gap-4'>
-            <div className='flex flex-wrap'>
-              <h2 className='text-xl basis-1/3 font-bold'>Station Name </h2>
-              <p className='basis-2/3'>{station.name}</p>
-            </div>
-            <div className='flex flex-wrap'>
-              <h2 className='text-xl basis-1/3 font-bold'>Station location</h2>
-              <p className='basis-2/3'>{station.location?.stringaddress}</p>
-            </div>
-            <div className='flex flex-wrap'>
-              <h2 className='text-xl basis-1/3 font-bold'>Capacity (no of slots)</h2>
-              <p className='basis-2/3'>{station.capacity}</p>
-            </div>
-            <div className='flex flex-wrap'>
-              <h2 className='text-xl basis-1/3 font-bold'>organization Name</h2>
-              <p className='basis-2/3'>{station.orgName}</p>
-            </div>
+        <div className='flex justify-between'>
+          <div className='w-1/2 px-2'>
+            <img src={process.env.REACT_APP_HOST_BASE_URL + station.stationImg} alt='station' className='w-full max-h-[500px] object-cover' />
           </div>
-          {/* <div>
-            <img src={station.image} alt='station' className='w-60 h-60 object-cover' />
-          </div> */}
-
-          <div className='flex flex-col gap-2'>
-            <h1 className='text-2xl font-bold'>Parking Options</h1>
-            <div className='flex gap-1 flex-wrap '>
-              {station.parkingOptions.map((option, index) => (
-                <div key={index} className='border w-1/4 bg-yellow-300 rounded shadow px-4 py-2'>
-                  <div className='flex flex-row-reverse'><EditIcon onClick={() => { handleSelectParkingOption(option) }} /></div>
-                  <div className='flex flex-wrap'>
-                    <h2 className='text-xl basis-1/3 font-bold'>Type </h2>
-                    <p className='text-xl'>{parkingOptionsHmap[Number(option.type)]}</p>
-                  </div>
-                  <div className='flex flex-wrap'>
-                    <h2 className='text-xl basis-1/3 font-bold'>Capacity</h2>
-                    <p className='text-xl'>{option.capacity}</p>
-                  </div>
-                  <div className='flex flex-wrap'>
-                    <h2 className='text-xl basis-1/3 font-bold'>Occupied</h2>
-                    <p className='text-xl'>{option.occupied}</p>
-                  </div>
-                </div>
-              ))
-              }
-              <button className='p-1 w-20 border bg-yellow-300 rounded shadow text-3xl' onClick={() => { setShowModal(true) }}>+</button>
+          <div className='flex flex-col gap-4 w-full'>
+            <h1 className='text-3xl font-bold'>{station.name}</h1>
+            <div className='basis-1/3 flex flex-col gap-4'>
+              <div className='flex flex-wrap'>
+                <h2 className='text-xl basis-1/3 font-bold'>Station Name </h2>
+                <p className='basis-2/3'>{station.name}</p>
+              </div>
+              <div className='flex flex-wrap'>
+                <h2 className='text-xl basis-1/3 font-bold'>Station location</h2>
+                <p className='basis-2/3'>{station.location?.stringaddress}</p>
+              </div>
+              <div className='flex flex-wrap'>
+                <h2 className='text-xl basis-1/3 font-bold'>Capacity (no of slots)</h2>
+                <p className='basis-2/3'>{station.capacity}</p>
+              </div>
+              <div className='flex flex-wrap'>
+                <h2 className='text-xl basis-1/3 font-bold'>organization Name</h2>
+                <p className='basis-2/3'>{station.orgName}</p>
+              </div>
             </div>
-          </div>
 
-        </div >
+
+            <div className='flex flex-col gap-2'>
+              <h1 className='text-2xl font-bold'>Parking Options</h1>
+              <div className='flex gap-1 flex-wrap '>
+                {station.parkingOptions.map((option, index) => (
+                  <div key={index} className='border w-1/4 bg-yellow-300 rounded shadow px-4 py-2'>
+                    <div className='flex flex-row-reverse'><EditIcon onClick={() => { handleSelectParkingOption(option) }} /></div>
+                    <div className='flex flex-wrap'>
+                      <h2 className='text-xl basis-1/3 font-bold'>Type </h2>
+                      <p className='text-xl'>{parkingOptionsHmap[Number(option.type)]}</p>
+                    </div>
+                    <div className='flex flex-wrap'>
+                      <h2 className='text-xl basis-1/3 font-bold'>Capacity</h2>
+                      <p className='text-xl'>{option.capacity}</p>
+                    </div>
+                    <div className='flex flex-wrap'>
+                      <h2 className='text-xl basis-1/3 font-bold'>Occupied</h2>
+                      <p className='text-xl'>{option.occupied}</p>
+                    </div>
+                  </div>
+                ))
+                }
+                <button className='p-1 w-20 border bg-yellow-300 rounded shadow text-3xl' onClick={() => { setShowModal(true) }}>+</button>
+              </div>
+            </div>
+
+          </div >
+        </div>
       ) : (
         <div>
           <h1 className='text-2xl font-bold'>No Station Found</h1>
