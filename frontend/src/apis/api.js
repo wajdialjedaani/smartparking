@@ -1,6 +1,6 @@
 
-const baseUrl = 'http://localhost:8080/api';
-// const baseUrl = 'http://18.118.205.5:8080/api'
+// const baseUrl = 'http://localhost:8080/api';
+const baseUrl = 'http://18.118.205.5:8080/api'
 
 export const signin = (formData) => {
   return fetch(`${baseUrl}/auth/login/`, {
