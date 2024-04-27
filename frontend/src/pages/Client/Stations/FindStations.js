@@ -54,6 +54,7 @@ function FindStations() {
           id: TempStation?._id
         }
       })
+      console.log(newMarkers, 'newMarkers')
       setMarkers(newMarkers)
     }
   }, [stations])
